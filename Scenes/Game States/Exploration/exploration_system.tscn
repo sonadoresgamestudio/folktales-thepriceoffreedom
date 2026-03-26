@@ -1,0 +1,226 @@
+[gd_scene load_steps=22 format=3 uid="uid://c1y5gqawsgf66"]
+
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/exploration_system.gd" id="1_edmre"]
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/prototype_map.gd" id="2_1adql"]
+[ext_resource type="Texture2D" uid="uid://c5ae2t74vkvvk" path="res://assets visuales (reordenar y crear directorio de assets)/ADV-fondo.png" id="2_l2hrt"]
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/box.gd" id="3_de1ov"]
+[ext_resource type="Texture2D" uid="uid://bcs2r2b34380s" path="res://assets visuales (reordenar y crear directorio de assets)/ADV-Box 1.png" id="4_f0s1h"]
+[ext_resource type="Texture2D" uid="uid://bf0wex5bwe8kc" path="res://assets visuales (reordenar y crear directorio de assets)/ADV-celda.png" id="5_7xdld"]
+[ext_resource type="Texture2D" uid="uid://ds4dh5sejk31" path="res://assets visuales (reordenar y crear directorio de assets)/ADV-cerradura.png" id="6_83ppu"]
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/cell.gd" id="6_dml07"]
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/keyhole.gd" id="7_bb6d8"]
+[ext_resource type="Texture2D" uid="uid://ciag2n8ubrksk" path="res://assets visuales (reordenar y crear directorio de assets)/ADV-picaporte.png" id="7_u56v8"]
+[ext_resource type="Texture2D" uid="uid://cqrie0hpkl5w0" path="res://assets visuales (reordenar y crear directorio de assets)/ADV-puerta sin manija.png" id="8_x4ek0"]
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/knob.gd" id="9_hiyp0"]
+[ext_resource type="PackedScene" uid="uid://disbkb23yxsju" path="res://exploration_text.tscn" id="9_kkr71"]
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/door.gd" id="11_bjga1"]
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/go_to_button.gd" id="11_jxod1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpcp4"]
+size = Vector2(300, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eplwg"]
+size = Vector2(635, 290)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01glh"]
+size = Vector2(618, 299.2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3nw0"]
+size = Vector2(185, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ri6ic"]
+size = Vector2(235, 235)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58llb"]
+size = Vector2(120.5, 288)
+
+[node name="Exploration System" type="Node" node_paths=PackedStringArray("exploration_text")]
+script = ExtResource("1_edmre")
+exploration_text = NodePath("UI/Exploration Text")
+
+[node name="Prototype Map" type="Node2D" parent="."]
+script = ExtResource("2_1adql")
+
+[node name="Fondo" type="Sprite2D" parent="Prototype Map"]
+position = Vector2(960, 540)
+texture = ExtResource("2_l2hrt")
+
+[node name="Room 1" type="Node2D" parent="Prototype Map"]
+
+[node name="Box" type="Area2D" parent="Prototype Map/Room 1" node_paths=PackedStringArray("exploration_system", "map")]
+position = Vector2(790, 652)
+script = ExtResource("3_de1ov")
+exploration_system = NodePath("../../..")
+map = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Box"]
+texture = ExtResource("4_f0s1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Box"]
+shape = SubResource("RectangleShape2D_fpcp4")
+
+[node name="Celda" type="Area2D" parent="Prototype Map/Room 1" node_paths=PackedStringArray("exploration_system", "map")]
+position = Vector2(59, 512)
+scale = Vector2(1, 2.5)
+script = ExtResource("6_dml07")
+exploration_system = NodePath("../../..")
+map = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda"]
+position = Vector2(262.5, 0)
+shape = SubResource("RectangleShape2D_eplwg")
+
+[node name="Celda2" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(184, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda2"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda2"]
+
+[node name="Celda3" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(315, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda3"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda3"]
+
+[node name="Celda4" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(444, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda4"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda4"]
+
+[node name="Celda5" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(569, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda5"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda5"]
+
+[node name="Celda6" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(1348, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda6"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda6"]
+position = Vector2(243, 0)
+shape = SubResource("RectangleShape2D_01glh")
+
+[node name="Celda7" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(1477, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda7"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda7"]
+
+[node name="Celda8" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(1602, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda8"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda8"]
+
+[node name="Celda9" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(1733, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda9"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda9"]
+
+[node name="Celda10" type="Area2D" parent="Prototype Map/Room 1"]
+position = Vector2(1866, 512)
+scale = Vector2(1, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 1/Celda10"]
+texture = ExtResource("5_7xdld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 1/Celda10"]
+
+[node name="Room 2" type="Node2D" parent="Prototype Map"]
+visible = false
+
+[node name="Keyhole" type="Area2D" parent="Prototype Map/Room 2" node_paths=PackedStringArray("exploration_system", "map")]
+position = Vector2(872, 559)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("7_bb6d8")
+exploration_system = NodePath("../../..")
+map = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 2/Keyhole"]
+texture = ExtResource("6_83ppu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 2/Keyhole"]
+position = Vector2(-7.5, -5)
+shape = SubResource("RectangleShape2D_r3nw0")
+
+[node name="Knob" type="Area2D" parent="Prototype Map/Room 2" node_paths=PackedStringArray("exploration_system", "map")]
+position = Vector2(872, 495)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("9_hiyp0")
+exploration_system = NodePath("../../..")
+map = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 2/Knob"]
+texture = ExtResource("7_u56v8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 2/Knob"]
+position = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_ri6ic")
+
+[node name="Door" type="Area2D" parent="Prototype Map/Room 2" node_paths=PackedStringArray("exploration_system", "map")]
+show_behind_parent = true
+position = Vector2(969, 444)
+scale = Vector2(2, 2)
+script = ExtResource("11_bjga1")
+exploration_system = NodePath("../../..")
+map = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Prototype Map/Room 2/Door"]
+texture = ExtResource("8_x4ek0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prototype Map/Room 2/Door"]
+position = Vector2(30.25, 7.5)
+shape = SubResource("RectangleShape2D_58llb")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Exploration Text" parent="UI" instance=ExtResource("9_kkr71")]
+visible = false
+
+[node name="Go To Button" type="Button" parent="UI"]
+offset_left = 1752.0
+offset_top = 63.0
+offset_right = 1843.0
+offset_bottom = 94.0
+scale = Vector2(1.46165, 1.77679)
+focus_mode = 0
+text = "Go to door"
+script = ExtResource("11_jxod1")
+
+[connection signal="input_event" from="Prototype Map/Room 1/Box" to="Prototype Map/Room 1/Box" method="_on_input_event"]
+[connection signal="input_event" from="Prototype Map/Room 1/Celda" to="Prototype Map/Room 1/Celda" method="_on_input_event"]
+[connection signal="input_event" from="Prototype Map/Room 1/Celda6" to="Prototype Map/Room 1/Celda" method="_on_input_event"]
+[connection signal="input_event" from="Prototype Map/Room 2/Keyhole" to="Prototype Map/Room 2/Keyhole" method="_on_input_event"]
+[connection signal="input_event" from="Prototype Map/Room 2/Knob" to="Prototype Map/Room 2/Knob" method="_on_input_event"]
+[connection signal="input_event" from="Prototype Map/Room 2/Door" to="Prototype Map/Room 2/Door" method="_on_input_event"]
+[connection signal="pressed" from="UI/Go To Button" to="Prototype Map" method="_on_go_to_button_pressed"]

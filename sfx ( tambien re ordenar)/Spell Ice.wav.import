@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7a01icgo8ach"
+path="res://.godot/imported/Spell Ice.wav-1b6440abde5f26c3318968a5764af7bc.sample"
+
+[deps]
+
+source_file="res://sfx ( tambien re ordenar)/Spell Ice.wav"
+dest_files=["res://.godot/imported/Spell Ice.wav-1b6440abde5f26c3318968a5764af7bc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

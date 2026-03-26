@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca1kx7vihdw1m"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/Abilities Menu/ability_action.gd" id="1_pgj1f"]
+
+[node name="Ability" type="HBoxContainer" node_paths=PackedStringArray("ability_name", "cost_label", "upgrade_cost_label", "cursor_spawn")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pgj1f")
+ability_name = NodePath("AbilityName")
+cost_label = NodePath("BasicCost")
+upgrade_cost_label = NodePath("UpgradeCost")
+cursor_spawn = NodePath("Cursor Spawn")
+
+[node name="Cursor Spawn" type="Node2D" parent="."]
+position = Vector2(-15, 22)
+
+[node name="AbilityName" type="Label" parent="."]
+layout_mode = 2
+
+[node name="BasicCost" type="Label" parent="."]
+layout_mode = 2
+
+[node name="UpgradeCost" type="Label" parent="."]
+layout_mode = 2

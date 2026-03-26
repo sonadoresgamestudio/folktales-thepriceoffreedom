@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://jpytahiptb1p"]
+
+[ext_resource type="Script" path="res://Scenes/Cursors/Exploration Cursor/exploration_cursor.gd" id="1_h0r0l"]
+[ext_resource type="Texture2D" uid="uid://dup8i1ml8nima" path="res://assets visuales (reordenar y crear directorio de assets)/SelectorDeHabilidadesEnemigos.png" id="2_qjd8q"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_h0r0l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qjd8q")

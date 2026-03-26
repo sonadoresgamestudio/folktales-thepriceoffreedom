@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b514bvmcrwj3w"
+path="res://.godot/imported/Sword 01.wav-b025af3c34b130cb35080491dc4162fb.sample"
+
+[deps]
+
+source_file="res://sfx ( tambien re ordenar)/Sword 01.wav"
+dest_files=["res://.godot/imported/Sword 01.wav-b025af3c34b130cb35080491dc4162fb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

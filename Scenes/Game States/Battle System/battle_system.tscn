@@ -1,0 +1,331 @@
+[gd_scene load_steps=23 format=3 uid="uid://cac3mqs5ojjq3"]
+
+[ext_resource type="Script" path="res://Scenes/Game States/Battle System/battle_system.gd" id="1_adrcq"]
+[ext_resource type="AudioStream" uid="uid://cte8jrfme36em" path="res://musica (tambien reordenar)/Battle 1.ogg" id="2_b42py"]
+[ext_resource type="Script" path="res://hero.gd" id="2_ftxge"]
+[ext_resource type="AudioStream" uid="uid://d0yebxm2op2ym" path="res://musica (tambien reordenar)/Victory (intro).ogg" id="3_2p83y"]
+[ext_resource type="PackedScene" uid="uid://n780l32i7134" path="res://status_nodes.tscn" id="4_6u8ak"]
+[ext_resource type="AudioStream" uid="uid://cgpe4fxgognsv" path="res://musica (tambien reordenar)/Victory (loop).ogg" id="4_ged2m"]
+[ext_resource type="AudioStream" uid="uid://c2ta8k1d8lwsp" path="res://musica (tambien reordenar)/Game Over.ogg" id="5_16pf6"]
+[ext_resource type="Script" path="res://Enemy Folder/enemy_group.gd" id="5_g5mrd"]
+[ext_resource type="Texture2D" uid="uid://bv2gyhf6u7hai" path="res://Party Members/Noelia/RetratoEsperandoTurnoNoelia.png" id="5_gdf3j"]
+[ext_resource type="Script" path="res://Enemy Folder/enemy.gd" id="6_pcsno"]
+[ext_resource type="Texture2D" uid="uid://7kfn5csmcuj8" path="res://Party Members/Ash/RetratoEsperandoTurnoAsh.png" id="7_xn74t"]
+[ext_resource type="Texture2D" uid="uid://c7cgop6mbo8en" path="res://assets visuales (reordenar y crear directorio de assets)/Dungeon.png" id="11_r3orh"]
+[ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="16_rcmv5"]
+[ext_resource type="Script" path="res://Scenes/Game States/Battle System/turn_order_panel.gd" id="19_cmjja"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bw0wc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jb082"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijasm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw8my"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hv5od"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1y0f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tfah8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nig51"]
+
+[node name="Battle System" type="Node" node_paths=PackedStringArray("noelia", "noeliaHpLabel", "noeliaSpLabel", "ash", "ashHpLabel", "ashSpLabel", "enemy_group", "battle_info", "turn_order_panel")]
+script = ExtResource("1_adrcq")
+background_music = Array[AudioStream]([ExtResource("2_b42py"), ExtResource("3_2p83y"), ExtResource("4_ged2m"), ExtResource("5_16pf6")])
+noelia = NodePath("Hero Group/Party Member 1")
+noeliaHpLabel = NodePath("UI/Noelia/NoeliaHPLabel")
+noeliaSpLabel = NodePath("UI/Noelia/NoeliaHPLabel/NoeliaSPLabel")
+ash = NodePath("Hero Group/Party Member 2")
+ashHpLabel = NodePath("UI/Ash/AshHPLabel")
+ashSpLabel = NodePath("UI/Ash/AshHPLabel/AshSPLabel")
+enemy_group = NodePath("Enemy Group")
+battle_info = NodePath("UI/Battle Info")
+turn_order_panel = NodePath("UI/Turn Order Panel")
+
+[node name="Hero Group" type="Node" parent="."]
+
+[node name="Party Member 1" type="CharacterBody2D" parent="Hero Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(174, 803)
+script = ExtResource("2_ftxge")
+battle_system = NodePath("../..")
+
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Party Member 1"]
+position = Vector2(-87, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Party Member 1"]
+shape = SubResource("CircleShape2D_bw0wc")
+debug_color = Color(0.338507, 0.495863, 0.973454, 0.42)
+
+[node name="Status" parent="Hero Group/Party Member 1" instance=ExtResource("4_6u8ak")]
+offset_left = -45.0
+offset_top = -183.0
+offset_right = -5.0
+offset_bottom = -143.0
+
+[node name="Party Member 2" type="CharacterBody2D" parent="Hero Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(639, 766)
+script = ExtResource("2_ftxge")
+battle_system = NodePath("../..")
+id = 1
+
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Party Member 2"]
+position = Vector2(-117, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Party Member 2"]
+shape = SubResource("CircleShape2D_jb082")
+
+[node name="Status" parent="Hero Group/Party Member 2" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = -174.0
+offset_right = -6.0
+offset_bottom = -134.0
+
+[node name="Enemy Group" type="Node" parent="."]
+script = ExtResource("5_g5mrd")
+
+[node name="Enemy 1" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1016, 489)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 2
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 1"]
+position = Vector2(-140, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 1"]
+shape = SubResource("CircleShape2D_ijasm")
+
+[node name="Status" parent="Enemy Group/Enemy 1" instance=ExtResource("4_6u8ak")]
+offset_left = -7.0
+offset_top = 111.0
+offset_right = -7.0
+offset_bottom = 151.0
+
+[node name="Enemy 2" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1262, 475)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 3
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 2"]
+position = Vector2(-122, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 2"]
+shape = SubResource("CircleShape2D_yw8my")
+
+[node name="Status" parent="Enemy Group/Enemy 2" instance=ExtResource("4_6u8ak")]
+offset_left = 9.0
+offset_top = 147.0
+offset_right = 49.0
+offset_bottom = 187.0
+
+[node name="Enemy 3" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1543, 461)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 4
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 3"]
+position = Vector2(-134, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 3"]
+shape = SubResource("CircleShape2D_hv5od")
+
+[node name="Status" parent="Enemy Group/Enemy 3" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = 111.0
+offset_right = 34.0
+offset_bottom = 151.0
+
+[node name="Enemy 4" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1056, 155)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 5
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 4"]
+position = Vector2(-140, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 4"]
+shape = SubResource("CircleShape2D_e1y0f")
+
+[node name="Status" parent="Enemy Group/Enemy 4" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = 195.0
+offset_right = 34.0
+offset_bottom = 235.0
+
+[node name="Enemy 5" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1326, 146)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 6
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 5"]
+position = Vector2(-128, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 5"]
+shape = SubResource("CircleShape2D_tfah8")
+
+[node name="Status" parent="Enemy Group/Enemy 5" instance=ExtResource("4_6u8ak")]
+offset_left = -9.0
+offset_top = 180.0
+offset_right = 31.0
+offset_bottom = 220.0
+
+[node name="Enemy 6" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1638, 153)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 7
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 6"]
+position = Vector2(-152, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 6"]
+shape = SubResource("CircleShape2D_nig51")
+
+[node name="Status" parent="Enemy Group/Enemy 6" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = 129.0
+offset_right = 34.0
+offset_bottom = 169.0
+
+[node name="Audio Manager" type="Node" parent="."]
+
+[node name="Music Player" type="AudioStreamPlayer" parent="Audio Manager"]
+
+[node name="SFX Player" type="AudioStreamPlayer" parent="Audio Manager"]
+
+[node name="Fondo" type="TextureRect" parent="."]
+show_behind_parent = true
+z_index = -1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("11_r3orh")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Battle Info" type="Label" parent="UI"]
+z_index = 1
+offset_left = 1044.0
+offset_top = 699.0
+offset_right = 1084.0
+offset_bottom = 722.0
+scale = Vector2(0.910142, 0.998777)
+text = "Holis"
+
+[node name="TextureRect" type="TextureRect" parent="UI/Battle Info"]
+modulate = Color(0.176419, 0.176419, 0.176419, 0.756863)
+z_index = -1
+layout_mode = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 524.0
+offset_bottom = 341.0
+scale = Vector2(1.0522, 0.215143)
+texture = ExtResource("16_rcmv5")
+stretch_mode = 4
+
+[node name="Turn Order Panel" type="VBoxContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("19_cmjja")
+
+[node name="Noelia" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Noelia Key Art" type="TextureRect" parent="UI/Noelia"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 654.0
+offset_right = 646.0
+offset_bottom = 1259.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_gdf3j")
+
+[node name="NoeliaHPLabel" type="Label" parent="UI/Noelia"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 768.0
+offset_right = 414.0
+offset_bottom = 791.0
+text = "NOEL HP"
+
+[node name="NoeliaSPLabel" type="Label" parent="UI/Noelia/NoeliaHPLabel"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 53.0
+offset_right = 93.0
+offset_bottom = 76.0
+text = "NOEL BOOST "
+
+[node name="Noelia NameLabel" type="Label" parent="UI/Noelia"]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 892.0
+offset_right = 246.0
+offset_bottom = 915.0
+scale = Vector2(1.96988, 2.19109)
+text = "NOELIA"
+
+[node name="Ash" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ash Key Art" type="TextureRect" parent="UI/Ash"]
+layout_mode = 0
+offset_left = 555.0
+offset_top = 663.0
+offset_right = 1045.0
+offset_bottom = 1268.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_xn74t")
+
+[node name="AshHPLabel" type="Label" parent="UI/Ash"]
+layout_mode = 0
+offset_left = 778.0
+offset_top = 768.0
+offset_right = 836.0
+offset_bottom = 791.0
+text = "ASH HP"
+horizontal_alignment = 2
+
+[node name="AshSPLabel" type="Label" parent="UI/Ash/AshHPLabel"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 48.0
+offset_right = 86.0
+offset_bottom = 71.0
+text = "ASH BOOST"
+horizontal_alignment = 2
+
+[node name="AshNameLabel" type="Label" parent="UI/Ash"]
+layout_mode = 0
+offset_left = 646.0
+offset_top = 885.0
+offset_right = 686.0
+offset_bottom = 908.0
+scale = Vector2(2.16852, 2.02623)
+text = "ASH"
+
+[connection signal="finished" from="Audio Manager/Music Player" to="." method="_on_music_player_finished"]

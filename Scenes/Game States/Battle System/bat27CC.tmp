@@ -1,0 +1,178 @@
+[gd_scene load_steps=7 format=3 uid="uid://cac3mqs5ojjq3"]
+
+[ext_resource type="Script" path="res://Scenes/Game States/Battle System/battle_system.gd" id="1_adrcq"]
+[ext_resource type="Script" path="res://hero.gd" id="2_ftxge"]
+[ext_resource type="Texture2D" uid="uid://tei023ksuc0i" path="res://imagenes placeholder/Noel.png" id="3_8pd33"]
+[ext_resource type="Texture2D" uid="uid://hnhvco278rq8" path="res://Party Members/Ash/RetratoCombateAsh.png" id="4_x51e3"]
+[ext_resource type="Script" path="res://Enemy Folder/enemy_group.gd" id="5_g5mrd"]
+[ext_resource type="Script" path="res://enemy.gd" id="6_pcsno"]
+
+[node name="Battle System" type="Node" node_paths=PackedStringArray("noelia", "noeliaHpLabel", "noeliaBoostLabel", "ash", "ashHpLabel", "ashBoostLabel", "enemy_group", "label")]
+script = ExtResource("1_adrcq")
+noelia = NodePath("Hero Group/Noelia")
+noeliaHpLabel = NodePath("Hero Group/Noelia/HPLabel")
+noeliaBoostLabel = NodePath("Hero Group/Noelia/HPLabel/BoostLabel")
+ash = NodePath("Hero Group/Ash")
+ashHpLabel = NodePath("Hero Group/Ash/HPLabel")
+ashBoostLabel = NodePath("Hero Group/Ash/HPLabel/BoostLabel")
+enemy_group = NodePath("Enemy Group")
+label = NodePath("Battle Info")
+
+[node name="Hero Group" type="Node" parent="."]
+
+[node name="Noelia" type="Node2D" parent="Hero Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(270, 830)
+script = ExtResource("2_ftxge")
+battle_system = NodePath("../..")
+status_effect_manager = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://status_effect_manager.gd"))
+
+
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Noelia"]
+position = Vector2(-87, -30)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hero Group/Noelia"]
+scale = Vector2(0.514, 0.537)
+texture = ExtResource("3_8pd33")
+
+[node name="HPLabel" type="Label" parent="Hero Group/Noelia"]
+offset_left = 131.0
+offset_top = -43.0
+offset_right = 200.0
+offset_bottom = -20.0
+text = "NOEL HP"
+
+[node name="BoostLabel" type="Label" parent="Hero Group/Noelia/HPLabel"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 53.0
+offset_right = 93.0
+offset_bottom = 76.0
+text = "NOEL BOOST "
+
+[node name="NameLabel" type="Label" parent="Hero Group/Noelia"]
+offset_left = -38.0
+offset_top = 144.0
+offset_right = 5.0
+offset_bottom = 167.0
+scale = Vector2(1.96988, 2.19109)
+text = "NOELIA"
+
+[node name="Ash" type="Node2D" parent="Hero Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1606, 800)
+script = ExtResource("2_ftxge")
+battle_system = NodePath("../..")
+status_effect_manager = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://status_effect_manager.gd"))
+
+id = 1
+
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Ash"]
+position = Vector2(-117, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hero Group/Ash"]
+scale = Vector2(0.514, 0.459)
+texture = ExtResource("4_x51e3")
+
+[node name="HPLabel" type="Label" parent="Hero Group/Ash"]
+offset_left = -201.0
+offset_top = -42.0
+offset_right = -161.0
+offset_bottom = -19.0
+text = "ASH HP"
+
+[node name="BoostLabel" type="Label" parent="Hero Group/Ash/HPLabel"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 48.0
+offset_right = 86.0
+offset_bottom = 71.0
+text = "ASH BOOST"
+
+[node name="NameLabel" type="Label" parent="Hero Group/Ash"]
+offset_left = -14.0
+offset_top = 171.0
+offset_right = 26.0
+offset_bottom = 194.0
+scale = Vector2(2.16852, 2.02623)
+text = "ASH"
+
+[node name="Enemy Group" type="Node" parent="."]
+script = ExtResource("5_g5mrd")
+
+[node name="Enemy 1" type="Node2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system", "status_effect_manager")]
+position = Vector2(295, 171)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+status_effect_manager = NodePath("")
+id = 2
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 1"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 1"]
+
+[node name="Enemy 2" type="Node2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system", "status_effect_manager")]
+position = Vector2(542, 163)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+status_effect_manager = NodePath("")
+id = 3
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 2"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 2"]
+
+[node name="Enemy 3" type="Node2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system", "status_effect_manager")]
+position = Vector2(810, 155)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+status_effect_manager = NodePath("")
+id = 4
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 3"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 3"]
+
+[node name="Enemy 4" type="Node2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system", "status_effect_manager")]
+position = Vector2(1056, 155)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+status_effect_manager = NodePath("")
+id = 5
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 4"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 4"]
+
+[node name="Enemy 5" type="Node2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system", "status_effect_manager")]
+position = Vector2(1326, 146)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+status_effect_manager = NodePath("")
+id = 6
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 5"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 5"]
+
+[node name="Enemy 6" type="Node2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system", "status_effect_manager")]
+position = Vector2(1638, 153)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+status_effect_manager = NodePath("")
+id = 7
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 6"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 6"]
+
+[node name="Battle Info" type="Label" parent="."]
+offset_left = 658.0
+offset_top = 609.0
+offset_right = 698.0
+offset_bottom = 632.0
+text = "Holis"

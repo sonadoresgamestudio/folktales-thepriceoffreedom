@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://disbkb23yxsju"]
+
+[ext_resource type="Script" path="res://exploration_text.gd" id="1_c4ro7"]
+[ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="1_e33ae"]
+
+[node name="Exploration Text" type="Control" node_paths=PackedStringArray("frame", "speaker", "s_name", "message")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 658.0
+offset_top = 755.0
+offset_right = 785.0
+offset_bottom = 778.0
+script = ExtResource("1_c4ro7")
+frame = NodePath("Frame")
+speaker = NodePath("Speaker")
+s_name = NodePath("Speaker/Name")
+message = NodePath("Frame/Text")
+
+[node name="Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -39.0
+offset_right = 480.0
+offset_bottom = 322.0
+scale = Vector2(2.33654, 0.898633)
+texture = ExtResource("1_e33ae")
+
+[node name="Text" type="Label" parent="Frame"]
+layout_mode = 0
+offset_left = 42.6667
+offset_top = 97.0
+offset_right = 82.6667
+offset_bottom = 120.0
+scale = Vector2(2.337, 0.899)
+
+[node name="Speaker" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -621.0
+offset_top = -308.0
+offset_right = -131.0
+offset_bottom = -48.0
+
+[node name="Name" type="Label" parent="Speaker"]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 167.0
+offset_right = 621.0
+offset_bottom = 190.0
+scale = Vector2(5, 5)

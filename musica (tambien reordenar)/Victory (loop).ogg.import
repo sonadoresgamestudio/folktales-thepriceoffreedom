@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cgpe4fxgognsv"
+path="res://.godot/imported/Victory (loop).ogg-8a529bbd286cb562eeba9f518ef6893c.oggvorbisstr"
+
+[deps]
+
+source_file="res://musica (tambien reordenar)/Victory (loop).ogg"
+dest_files=["res://.godot/imported/Victory (loop).ogg-8a529bbd286cb562eeba9f518ef6893c.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,804 @@
+[gd_scene load_steps=77 format=3 uid="uid://cac3mqs5ojjq3"]
+
+[ext_resource type="Script" path="res://Scenes/Game States/Battle System/battle_system.gd" id="1_adrcq"]
+[ext_resource type="AudioStream" uid="uid://cte8jrfme36em" path="res://musica (tambien reordenar)/Battle 1.ogg" id="2_b42py"]
+[ext_resource type="Script" path="res://hero.gd" id="2_ftxge"]
+[ext_resource type="AudioStream" uid="uid://d0yebxm2op2ym" path="res://musica (tambien reordenar)/Victory (intro).ogg" id="3_2p83y"]
+[ext_resource type="PackedScene" uid="uid://n780l32i7134" path="res://status_nodes.tscn" id="4_6u8ak"]
+[ext_resource type="AudioStream" uid="uid://cgpe4fxgognsv" path="res://musica (tambien reordenar)/Victory (loop).ogg" id="4_ged2m"]
+[ext_resource type="AudioStream" uid="uid://c2ta8k1d8lwsp" path="res://musica (tambien reordenar)/Game Over.ogg" id="5_16pf6"]
+[ext_resource type="Script" path="res://Enemy Folder/enemy_group.gd" id="5_g5mrd"]
+[ext_resource type="Texture2D" uid="uid://bv2gyhf6u7hai" path="res://Party Members/Noelia/RetratoEsperandoTurnoNoelia.png" id="5_gdf3j"]
+[ext_resource type="Script" path="res://Enemy Folder/enemy.gd" id="6_pcsno"]
+[ext_resource type="Texture2D" uid="uid://7kfn5csmcuj8" path="res://Party Members/Ash/RetratoEsperandoTurnoAsh.png" id="7_xn74t"]
+[ext_resource type="Texture2D" uid="uid://xd0o1mkojhu" path="res://imagenes placeholder/sonic.png" id="10_txxf4"]
+[ext_resource type="Texture2D" uid="uid://ftiiyouuverq" path="res://imagenes placeholder/Skeleton.jpeg" id="16_0ujqr"]
+[ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="16_rcmv5"]
+[ext_resource type="Script" path="res://Scenes/Game States/Battle System/turn_order_panel.gd" id="19_cmjja"]
+[ext_resource type="Texture2D" uid="uid://b3yq7u6ec8o50" path="res://imagenes placeholder/Green_Hill_Zone_25th_Anniversary (1).png" id="21_pewg2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veya2"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2lnk"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(50, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xafc8"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(100, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdhbi"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(150, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj55h"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01cuw"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(250, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w0cq"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(0, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihheg"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(50, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsxs2"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(100, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u026m"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(150, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm2yf"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(200, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rubmy"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(250, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpgta"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(300, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sklju"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(350, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmb35"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(0, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns3lk"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(50, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yg4b"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(100, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkodd"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(150, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4tee"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(200, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e747"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(250, 350, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adk4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veya2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2lnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xafc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdhbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj55h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01cuw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w0cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihheg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsxs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u026m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm2yf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rubmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpgta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sklju")
+}],
+"loop": true,
+"name": &"move",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmb35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns3lk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yg4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkodd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4tee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e747")
+}],
+"loop": true,
+"name": &"phsyical_attack",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bw0wc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbo3t"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c2ej"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(50, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj7tg"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(100, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iktqx"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(150, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jopx6"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0lfb"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(250, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hs7x"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(0, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njmks"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(50, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht2pa"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(100, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oegu4"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(150, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l40qb"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(200, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2lkc"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(250, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbyrt"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(300, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snwfg"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(350, 50, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgllq"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(0, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky72t"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(50, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t2xn"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(100, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ep3p"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(150, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1fka"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(200, 350, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onjqq"]
+atlas = ExtResource("10_txxf4")
+region = Rect2(250, 350, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ait3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbo3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c2ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj7tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iktqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jopx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0lfb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hs7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njmks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht2pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oegu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l40qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2lkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbyrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snwfg")
+}],
+"loop": true,
+"name": &"move",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgllq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky72t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t2xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ep3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1fka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onjqq")
+}],
+"loop": true,
+"name": &"physical_attack",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jb082"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_481p7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijasm"]
+
+[sub_resource type="GDScript" id="GDScript_07k5m"]
+script/source = "class_name MovementRange extends GeneralRange
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_caw8m"]
+
+[sub_resource type="GDScript" id="GDScript_jw7uo"]
+script/source = "class_name ActionRange extends GeneralRange
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jdkk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw8my"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yjggl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hv5od"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cdrg0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1y0f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g5ee7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tfah8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lofrv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nig51"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mqcn"]
+
+[node name="Battle System" type="Node" node_paths=PackedStringArray("noelia", "noeliaHpLabel", "noeliaSpLabel", "ash", "ashHpLabel", "ashSpLabel", "enemy_group", "battle_info", "turn_order_panel")]
+script = ExtResource("1_adrcq")
+background_music = Array[AudioStream]([ExtResource("2_b42py"), ExtResource("3_2p83y"), ExtResource("4_ged2m"), ExtResource("5_16pf6")])
+noelia = NodePath("Hero Group/Noelia")
+noeliaHpLabel = NodePath("UI/Noelia/NoeliaHPLabel")
+noeliaSpLabel = NodePath("UI/Noelia/NoeliaHPLabel/NoeliaSPLabel")
+ash = NodePath("Hero Group/Ash")
+ashHpLabel = NodePath("UI/Ash/AshHPLabel")
+ashSpLabel = NodePath("UI/Ash/AshHPLabel/AshSPLabel")
+enemy_group = NodePath("Enemy Group")
+battle_info = NodePath("UI/Battle Info")
+turn_order_panel = NodePath("UI/Turn Order Panel")
+
+[node name="Hero Group" type="Node" parent="."]
+
+[node name="Noelia" type="CharacterBody2D" parent="Hero Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(142, 523)
+script = ExtResource("2_ftxge")
+battle_system = NodePath("../..")
+
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Noelia"]
+position = Vector2(-87, -30)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero Group/Noelia"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_adk4l")
+animation = &"idle"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Noelia"]
+shape = SubResource("CircleShape2D_bw0wc")
+debug_color = Color(0.338507, 0.495863, 0.973454, 0.42)
+
+[node name="Status" parent="Hero Group/Noelia" instance=ExtResource("4_6u8ak")]
+offset_left = -45.0
+offset_top = -183.0
+offset_right = -5.0
+offset_bottom = -143.0
+
+[node name="Ash" type="CharacterBody2D" parent="Hero Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(431, 517)
+script = ExtResource("2_ftxge")
+battle_system = NodePath("../..")
+id = 1
+
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Ash"]
+position = Vector2(-117, -2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero Group/Ash"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ait3f")
+animation = &"physical_attack"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Ash"]
+shape = SubResource("CircleShape2D_jb082")
+
+[node name="Status" parent="Hero Group/Ash" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = -174.0
+offset_right = -6.0
+offset_bottom = -134.0
+
+[node name="Omar" type="CharacterBody2D" parent="Hero Group"]
+script = ExtResource("2_ftxge")
+
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Omar"]
+position = Vector2(-117, -2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero Group/Omar"]
+scale = Vector2(3, 3)
+animation = &""
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Omar"]
+shape = SubResource("CircleShape2D_481p7")
+
+[node name="Enemy Group" type="Node" parent="."]
+script = ExtResource("5_g5mrd")
+
+[node name="Enemy 1" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1016, 489)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 2
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 1"]
+position = Vector2(-140, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 1"]
+texture = ExtResource("16_0ujqr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 1"]
+shape = SubResource("CircleShape2D_ijasm")
+
+[node name="Movement Range" type="Area2D" parent="Enemy Group/Enemy 1"]
+script = SubResource("GDScript_07k5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 1/Movement Range"]
+shape = SubResource("CircleShape2D_caw8m")
+
+[node name="Action Range" type="Area2D" parent="Enemy Group/Enemy 1"]
+position = Vector2(-7, 111)
+script = SubResource("GDScript_jw7uo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 1/Action Range"]
+shape = SubResource("CircleShape2D_1jdkk")
+
+[node name="Status" parent="Enemy Group/Enemy 1" instance=ExtResource("4_6u8ak")]
+offset_left = -7.0
+offset_top = 111.0
+offset_right = -7.0
+offset_bottom = 151.0
+
+[node name="Enemy 2" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1262, 475)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 3
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 2"]
+position = Vector2(-122, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 2"]
+shape = SubResource("CircleShape2D_yw8my")
+
+[node name="Movement Range" type="Area2D" parent="Enemy Group/Enemy 2"]
+script = SubResource("GDScript_07k5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 2/Movement Range"]
+shape = SubResource("CircleShape2D_yjggl")
+
+[node name="Action Range" type="Area2D" parent="Enemy Group/Enemy 2"]
+position = Vector2(9, 147)
+script = SubResource("GDScript_jw7uo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 2/Action Range"]
+shape = SubResource("CircleShape2D_1jdkk")
+
+[node name="Status" parent="Enemy Group/Enemy 2" instance=ExtResource("4_6u8ak")]
+offset_left = 9.0
+offset_top = 147.0
+offset_right = 49.0
+offset_bottom = 187.0
+
+[node name="Enemy 3" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1543, 461)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 4
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 3"]
+position = Vector2(-134, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 3"]
+shape = SubResource("CircleShape2D_hv5od")
+
+[node name="Movement Range" type="Area2D" parent="Enemy Group/Enemy 3"]
+script = SubResource("GDScript_07k5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 3/Movement Range"]
+shape = SubResource("CircleShape2D_cdrg0")
+
+[node name="Action Range" type="Area2D" parent="Enemy Group/Enemy 3"]
+position = Vector2(-6, 111)
+script = SubResource("GDScript_jw7uo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 3/Action Range"]
+shape = SubResource("CircleShape2D_1jdkk")
+
+[node name="Status" parent="Enemy Group/Enemy 3" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = 111.0
+offset_right = 34.0
+offset_bottom = 151.0
+
+[node name="Enemy 4" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1056, 155)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 5
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 4"]
+position = Vector2(-140, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 4"]
+shape = SubResource("CircleShape2D_e1y0f")
+
+[node name="Movement Range" type="Area2D" parent="Enemy Group/Enemy 4"]
+script = SubResource("GDScript_07k5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 4/Movement Range"]
+shape = SubResource("CircleShape2D_g5ee7")
+
+[node name="Action Range" type="Area2D" parent="Enemy Group/Enemy 4"]
+script = SubResource("GDScript_jw7uo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 4/Action Range"]
+shape = SubResource("CircleShape2D_1jdkk")
+
+[node name="Status" parent="Enemy Group/Enemy 4" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = 195.0
+offset_right = 34.0
+offset_bottom = 235.0
+
+[node name="Enemy 5" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1326, 146)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 6
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 5"]
+position = Vector2(-128, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 5"]
+shape = SubResource("CircleShape2D_tfah8")
+
+[node name="Movement Range" type="Area2D" parent="Enemy Group/Enemy 5"]
+script = SubResource("GDScript_07k5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 5/Movement Range"]
+shape = SubResource("CircleShape2D_lofrv")
+
+[node name="Action Range" type="Area2D" parent="Enemy Group/Enemy 5"]
+script = SubResource("GDScript_jw7uo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 5/Action Range"]
+shape = SubResource("CircleShape2D_1jdkk")
+
+[node name="Status" parent="Enemy Group/Enemy 5" instance=ExtResource("4_6u8ak")]
+offset_left = -9.0
+offset_top = 180.0
+offset_right = 31.0
+offset_bottom = 220.0
+
+[node name="Enemy 6" type="CharacterBody2D" parent="Enemy Group" node_paths=PackedStringArray("battle_system")]
+position = Vector2(1638, 153)
+script = ExtResource("6_pcsno")
+battle_system = NodePath("../..")
+id = 7
+
+[node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 6"]
+position = Vector2(-152, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Group/Enemy 6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 6"]
+shape = SubResource("CircleShape2D_nig51")
+
+[node name="Movement Range" type="Area2D" parent="Enemy Group/Enemy 6"]
+script = SubResource("GDScript_07k5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 6/Movement Range"]
+shape = SubResource("CircleShape2D_7mqcn")
+
+[node name="Action Range" type="Area2D" parent="Enemy Group/Enemy 6"]
+script = SubResource("GDScript_jw7uo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Group/Enemy 6/Action Range"]
+shape = SubResource("CircleShape2D_1jdkk")
+
+[node name="Status" parent="Enemy Group/Enemy 6" instance=ExtResource("4_6u8ak")]
+offset_left = -6.0
+offset_top = 129.0
+offset_right = 34.0
+offset_bottom = 169.0
+
+[node name="Audio Manager" type="Node" parent="."]
+
+[node name="Music Player" type="AudioStreamPlayer" parent="Audio Manager"]
+
+[node name="SFX Player" type="AudioStreamPlayer" parent="Audio Manager"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Battle Info" type="Label" parent="UI"]
+z_index = 1
+layout_mode = 0
+offset_left = 939.0
+offset_top = 731.0
+offset_right = 979.0
+offset_bottom = 754.0
+scale = Vector2(0.910142, 0.998777)
+text = "Holis"
+
+[node name="TextureRect" type="TextureRect" parent="UI/Battle Info"]
+modulate = Color(0.176419, 0.176419, 0.176419, 0.756863)
+z_index = -1
+layout_mode = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 524.0
+offset_bottom = 341.0
+scale = Vector2(1.72174, 0.61307)
+texture = ExtResource("16_rcmv5")
+stretch_mode = 4
+
+[node name="Fondo" type="TextureRect" parent="UI"]
+visible = false
+show_behind_parent = true
+z_index = -1
+layout_mode = 0
+offset_left = -58.0
+offset_top = -243.0
+offset_right = 1862.0
+offset_bottom = 837.0
+texture = ExtResource("21_pewg2")
+
+[node name="Turn Order Panel" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("19_cmjja")
+
+[node name="Noelia" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Noelia Key Art" type="TextureRect" parent="UI/Noelia"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 654.0
+offset_right = 646.0
+offset_bottom = 1259.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_gdf3j")
+
+[node name="NoeliaHPLabel" type="Label" parent="UI/Noelia"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 768.0
+offset_right = 414.0
+offset_bottom = 791.0
+text = "NOEL HP"
+
+[node name="NoeliaSPLabel" type="Label" parent="UI/Noelia/NoeliaHPLabel"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 53.0
+offset_right = 93.0
+offset_bottom = 76.0
+text = "NOEL BOOST "
+
+[node name="Noelia NameLabel" type="Label" parent="UI/Noelia"]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 892.0
+offset_right = 246.0
+offset_bottom = 915.0
+scale = Vector2(1.96988, 2.19109)
+text = "NOELIA"
+
+[node name="Ash" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ash Key Art" type="TextureRect" parent="UI/Ash"]
+layout_mode = 0
+offset_left = 555.0
+offset_top = 663.0
+offset_right = 1045.0
+offset_bottom = 1268.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_xn74t")
+
+[node name="AshHPLabel" type="Label" parent="UI/Ash"]
+layout_mode = 0
+offset_left = 778.0
+offset_top = 768.0
+offset_right = 836.0
+offset_bottom = 791.0
+text = "ASH HP"
+horizontal_alignment = 2
+
+[node name="AshSPLabel" type="Label" parent="UI/Ash/AshHPLabel"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 48.0
+offset_right = 86.0
+offset_bottom = 71.0
+text = "ASH BOOST"
+horizontal_alignment = 2
+
+[node name="AshNameLabel" type="Label" parent="UI/Ash"]
+layout_mode = 0
+offset_left = 646.0
+offset_top = 885.0
+offset_right = 686.0
+offset_bottom = 908.0
+scale = Vector2(2.16852, 2.02623)
+text = "ASH"
+
+[connection signal="finished" from="Audio Manager/Music Player" to="." method="_on_music_player_finished"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgbn0438tqru0"]
+
+[ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="1_cag7e"]
+[ext_resource type="Script" path="res://Scenes/Menus/Command Menu/command_menu.gd" id="1_ytx2b"]
+[ext_resource type="Script" path="res://button_action.gd" id="2_a2tk0"]
+
+[node name="Command Menu" type="PanelContainer"]
+layout_direction = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 411.0
+offset_top = -318.0
+offset_right = 585.049
+offset_bottom = -143.951
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(87.025, 0)
+script = ExtResource("1_ytx2b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Attack Button" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Attack"
+script = ExtResource("2_a2tk0")
+
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Attack Button"]
+
+[node name="Defend Button" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Defend"
+script = ExtResource("2_a2tk0")
+
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Defend Button"]
+
+[node name="Abilities Button" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Abilities"
+script = ExtResource("2_a2tk0")
+
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Abilities Button"]
+
+[node name="Inventory Button" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Inventory"
+script = ExtResource("2_a2tk0")
+
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Inventory Button"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_cag7e")
+expand_mode = 4

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://41ks2saf45wj"]
+
+[node name="Audio Manager" type="Node"]
+
+[node name="Music Player" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX Player" type="AudioStreamPlayer" parent="."]

@@ -1,0 +1,159 @@
+[gd_scene load_steps=10 format=3 uid="uid://chwhblb75u40l"]
+
+[ext_resource type="Script" path="res://battle_system.gd" id="1_uskh6"]
+[ext_resource type="Script" path="res://party_member.gd" id="2_1i8md"]
+[ext_resource type="Script" path="res://command_menu.gd" id="2_uwoky"]
+[ext_resource type="Script" path="res://Enemy Folder/enemy_group.gd" id="3_eajsd"]
+[ext_resource type="Script" path="res://button_action.gd" id="3_td7jl"]
+[ext_resource type="Script" path="res://enemy.gd" id="4_qpltr"]
+[ext_resource type="Texture2D" uid="uid://tei023ksuc0i" path="res://imagenes placeholder/Noel.png" id="5_4eex7"]
+[ext_resource type="Texture2D" uid="uid://cami2lfenr7in" path="res://imagenes placeholder/Ash.png" id="6_e7jtd"]
+[ext_resource type="Script" path="res://status_effect_manager.gd" id="9_jnb6h"]
+
+[node name="Game Manager" type="Node"]
+
+[node name="Battle System" type="Node" parent="." node_paths=PackedStringArray("noel", "ash", "enemy1", "enemy2", "enemy3", "enemy4", "enemy5", "enemy6")]
+script = ExtResource("1_uskh6")
+noel = NodePath("Hero Group/Noel")
+ash = NodePath("Hero Group/Ash")
+enemy1 = NodePath("Enemy Group/Enemy 1")
+enemy2 = NodePath("Enemy Group/Enemy 2")
+enemy3 = NodePath("Enemy Group/Enemy 3")
+enemy4 = NodePath("Enemy Group/Enemy 4")
+enemy5 = NodePath("Enemy Group/Enemy 5")
+enemy6 = NodePath("Enemy Group/Enemy 6")
+
+[node name="Hero Group" type="Node" parent="Battle System"]
+
+[node name="Command Menu" type="Control" parent="Battle System/Hero Group" node_paths=PackedStringArray("attack", "defend", "custom_1", "custom_2", "custom_3", "custom_4", "custom_5", "custom_6")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 83.0
+offset_top = 426.0
+offset_right = 123.0
+offset_bottom = 466.0
+script = ExtResource("2_uwoky")
+attack = NodePath("Attack Button")
+defend = NodePath("Defend Button")
+custom_1 = NodePath("Custom Button 1")
+custom_2 = NodePath("Custom Button 2")
+custom_3 = NodePath("Custom Button 3")
+custom_4 = NodePath("Custom Button 4")
+custom_5 = NodePath("Custom Button 5")
+custom_6 = NodePath("Custom Button 6")
+
+[node name="Attack Button" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -2.0
+offset_right = 67.0
+offset_bottom = 29.0
+text = "Atacar"
+
+[node name="Defend Button" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 51.0
+offset_right = 76.0
+offset_bottom = 82.0
+text = "Defender"
+
+[node name="Custom Button 1" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 106.0
+offset_right = 64.0
+offset_bottom = 137.0
+text = "Curar"
+script = ExtResource("3_td7jl")
+
+[node name="Custom Button 2" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 212.0
+offset_right = 76.0
+offset_bottom = 243.0
+text = "Curar"
+script = ExtResource("3_td7jl")
+
+[node name="Custom Button 3" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 318.0
+offset_right = 88.0
+offset_bottom = 349.0
+text = "Curar"
+script = ExtResource("3_td7jl")
+
+[node name="Custom Button 4" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 424.0
+offset_right = 100.0
+offset_bottom = 455.0
+text = "Curar"
+script = ExtResource("3_td7jl")
+
+[node name="Custom Button 5" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 530.0
+offset_right = 112.0
+offset_bottom = 561.0
+text = "Curar"
+script = ExtResource("3_td7jl")
+
+[node name="Custom Button 6" type="Button" parent="Battle System/Hero Group/Command Menu"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 636.0
+offset_right = 124.0
+offset_bottom = 667.0
+text = "Curar"
+script = ExtResource("3_td7jl")
+
+[node name="Noel" type="Node2D" parent="Battle System/Hero Group"]
+script = ExtResource("2_1i8md")
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Hero Group/Noel"]
+texture = ExtResource("5_4eex7")
+
+[node name="Ash" type="Node2D" parent="Battle System/Hero Group"]
+script = ExtResource("2_1i8md")
+id = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Hero Group/Ash"]
+texture = ExtResource("6_e7jtd")
+
+[node name="Enemy Group" type="Node" parent="Battle System"]
+script = ExtResource("3_eajsd")
+
+[node name="Enemy 1" type="Node2D" parent="Battle System/Enemy Group"]
+script = ExtResource("4_qpltr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Enemy Group/Enemy 1"]
+
+[node name="Enemy 2" type="Node2D" parent="Battle System/Enemy Group"]
+script = ExtResource("4_qpltr")
+id = 1
+
+[node name="Enemy 3" type="Node2D" parent="Battle System/Enemy Group"]
+script = ExtResource("4_qpltr")
+id = 2
+
+[node name="Enemy 4" type="Node2D" parent="Battle System/Enemy Group"]
+script = ExtResource("4_qpltr")
+id = 3
+
+[node name="Enemy 5" type="Node2D" parent="Battle System/Enemy Group"]
+script = ExtResource("4_qpltr")
+id = 4
+
+[node name="Enemy 6" type="Node2D" parent="Battle System/Enemy Group"]
+script = ExtResource("4_qpltr")
+id = 5
+
+[node name="Status Effect Manager" type="Node" parent="Battle System"]
+script = ExtResource("9_jnb6h")
+
+[node name="Arrow" type="Node2D" parent="."]

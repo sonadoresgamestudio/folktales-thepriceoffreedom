@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://wbs67jivpt37"]
+
+[ext_resource type="Script" path="res://damage_counter.gd" id="1_5id4v"]
+
+[node name="Damage Counter" type="Node2D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_5id4v")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

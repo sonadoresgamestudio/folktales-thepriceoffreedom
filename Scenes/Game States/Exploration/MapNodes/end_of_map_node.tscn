@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://byny71vx3gqdu"]
+
+[ext_resource type="Script" path="res://Scenes/Game States/Exploration/MapNodes/end_of_map_node.gd" id="1_7g28h"]
+[ext_resource type="Texture2D" uid="uid://cnuhtgy1hcelg" path="res://imagenes placeholder/placeholder assets para el folk tales.png" id="2_unsmv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0lpci"]
+
+[node name="End Node" type="Area2D"]
+script = ExtResource("1_7g28h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0lpci")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_unsmv")
+region_enabled = true
+region_rect = Rect2(144, 0, 144, 144)
+
+[node name="Cursor Spawn" type="Node2D" parent="."]
+position = Vector2(-30, 0)

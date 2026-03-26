@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2yjmyaum1roe"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/Abilities Menu/abilities_menu.gd" id="1_37f24"]
+[ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="2_4syrg"]
+
+[node name="AbilitiesMenu" type="PanelContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 288.0
+offset_top = -316.0
+offset_right = 462.049
+offset_bottom = -141.951
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_37f24")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_4syrg")
+expand_mode = 4
+
+[node name="Upgrade" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "UPGRADED"

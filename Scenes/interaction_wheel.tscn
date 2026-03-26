@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://babci7m8mxegb"]
+
+[ext_resource type="Script" path="res://interaction_wheel.gd" id="1_8wo8w"]
+
+[node name="Interaction Wheel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8wo8w")
+
+[node name="Option" type="Button" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -17.0
+offset_right = 53.0
+offset_bottom = 14.0
+text = "hola"
+
+[node name="Option 2" type="Button" parent="."]
+layout_mode = 0
+offset_left = -37.0
+offset_top = 22.0
+offset_right = 41.0
+offset_bottom = 53.0
+text = "tu mama"
+
+[node name="Option 3" type="Button" parent="."]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -14.0
+offset_right = -32.0
+offset_bottom = 17.0
+text = "pete"
+
+[node name="Option 4" type="Button" parent="."]
+layout_mode = 0
+offset_left = -21.0
+offset_top = -50.0
+offset_right = 22.0
+offset_bottom = -19.0
+text = "caca"

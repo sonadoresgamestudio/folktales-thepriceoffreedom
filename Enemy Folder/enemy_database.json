@@ -1,0 +1,118 @@
+{
+	"1": {
+	  "unit_name": "Skeleton Knight",
+	  "XP": 0,
+	  "maxHP": 200,
+	  "agility": 5,
+	  "phy_str": 10,
+	  "phy_def": 5,
+	  "mag_str": 5,
+	  "mag_def": 5,
+	  "charge": 3,
+	  "luck": 5,
+	  "texture": "skeleton_knight_idle_sprite",
+	  "strong": [
+		true,
+		false,
+		false,
+		false,
+		false,
+		false
+	  ],
+	  "weak": [
+		false,
+		false,
+		false,
+		false,
+		false,
+		false
+	  ]
+	},
+	"2": {
+	  "unit_name": "Fire Slime",
+	  "XP": 0,
+	  "maxHP": 50,
+	  "agility": 8,
+	  "phy_str": 14,
+	  "phy_def": 10,
+	  "mag_str": 15,
+	  "mag_def": 12,
+	  "charge": 3,
+	  "luck": 5,
+	  "texture": "fire_slime_idle_sprite",
+	  "strong": [
+		false,
+		true,
+		false,
+		false,
+		false,
+		false
+	  ],
+	  "weak": [
+		false,
+		false,
+		false,
+		false,
+		false,
+		true
+	  ]
+	},
+	"3": {
+	  "unit_name": "Ice Slime",
+	  "XP": 0,
+	  "maxHP": 50,
+	  "agility": 8,
+	  "phy_str": 14,
+	  "phy_def": 10,
+	  "mag_str": 15,
+	  "mag_def": 12,
+	  "charge": 3,
+	  "luck": 5,
+	  "texture": "ice_slime_idle_sprite",
+	  "strong": [
+		false,
+		false,
+		true,
+		false,
+		false,
+		false
+	  ],
+	  "weak": [
+		false,
+		false,
+		false,
+		false,
+		false,
+		true
+	  ]
+	},
+	"4": {
+	  "unit_name": "Thunder Slime",
+	  "XP": 0,
+	  "maxHP": 50,
+	  "agility": 8,
+	  "phy_str": 14,
+	  "phy_def": 10,
+	  "mag_str": 15,
+	  "mag_def": 12,
+	  "charge": 3,
+	  "luck": 5,
+	  "texture": "thunder_slime_idle_sprite",
+	  "strong": [
+		false,
+		false,
+		false,
+		true,
+		false,
+		false
+	  ],
+	  "weak": [
+		false,
+		false,
+		false,
+		false,
+		false,
+		true
+	  ]
+	}
+}

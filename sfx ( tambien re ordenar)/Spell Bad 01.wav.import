@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://batevp0f8eg1v"
+path="res://.godot/imported/Spell Bad 01.wav-b3822e25abe586ce5caf79aa9a8d65ec.sample"
+
+[deps]
+
+source_file="res://sfx ( tambien re ordenar)/Spell Bad 01.wav"
+dest_files=["res://.godot/imported/Spell Bad 01.wav-b3822e25abe586ce5caf79aa9a8d65ec.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

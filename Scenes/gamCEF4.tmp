@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://chwhblb75u40l"]
+
+[ext_resource type="Script" path="res://battle_system.gd" id="1_8yj0a"]
+[ext_resource type="Script" path="res://hero.gd" id="2_xwn3k"]
+[ext_resource type="Texture2D" uid="uid://tei023ksuc0i" path="res://imagenes placeholder/Noel.png" id="3_fqgw1"]
+[ext_resource type="Texture2D" uid="uid://cami2lfenr7in" path="res://imagenes placeholder/Ash.png" id="4_c7kaq"]
+[ext_resource type="Script" path="res://Enemy Folder/enemy_group.gd" id="5_846on"]
+[ext_resource type="Script" path="res://enemy.gd" id="6_ob2pb"]
+[ext_resource type="Script" path="res://status_effect_manager.gd" id="7_k6la1"]
+
+[node name="Game Manager" type="Node"]
+
+[node name="Battle System" type="Node" parent="." node_paths=PackedStringArray("noel", "ash", "enemy_group", "label")]
+script = ExtResource("1_8yj0a")
+noel = NodePath("Hero Group/Noel")
+ash = NodePath("Hero Group/Ash")
+enemy_group = NodePath("Enemy Group")
+label = NodePath("Battle Info")
+
+[node name="Hero Group" type="Node" parent="Battle System"]
+
+[node name="Noel" type="Node2D" parent="Battle System/Hero Group"]
+position = Vector2(172, 464)
+script = ExtResource("2_xwn3k")
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Hero Group/Noel"]
+position = Vector2(-87, -30)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Hero Group/Noel"]
+scale = Vector2(0.514132, 0.536704)
+texture = ExtResource("3_fqgw1")
+
+[node name="Ash" type="Node2D" parent="Battle System/Hero Group"]
+position = Vector2(958, 443)
+script = ExtResource("2_xwn3k")
+id = 1
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Hero Group/Ash"]
+position = Vector2(-117, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Hero Group/Ash"]
+scale = Vector2(0.956007, 0.85351)
+texture = ExtResource("4_c7kaq")
+
+[node name="Enemy Group" type="Node" parent="Battle System"]
+script = ExtResource("5_846on")
+
+[node name="Enemy 1" type="Node2D" parent="Battle System/Enemy Group"]
+position = Vector2(159, 84)
+script = ExtResource("6_ob2pb")
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Enemy Group/Enemy 1"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Enemy Group/Enemy 1"]
+
+[node name="Enemy 2" type="Node2D" parent="Battle System/Enemy Group"]
+position = Vector2(285, 84)
+script = ExtResource("6_ob2pb")
+id = 1
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Enemy Group/Enemy 2"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Enemy Group/Enemy 2"]
+
+[node name="Enemy 3" type="Node2D" parent="Battle System/Enemy Group"]
+position = Vector2(432, 87)
+script = ExtResource("6_ob2pb")
+id = 2
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Enemy Group/Enemy 3"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Enemy Group/Enemy 3"]
+
+[node name="Enemy 4" type="Node2D" parent="Battle System/Enemy Group"]
+position = Vector2(697, 91)
+script = ExtResource("6_ob2pb")
+id = 3
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Enemy Group/Enemy 4"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Enemy Group/Enemy 4"]
+
+[node name="Enemy 5" type="Node2D" parent="Battle System/Enemy Group"]
+position = Vector2(892, 93)
+script = ExtResource("6_ob2pb")
+id = 4
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Enemy Group/Enemy 5"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Enemy Group/Enemy 5"]
+
+[node name="Enemy 6" type="Node2D" parent="Battle System/Enemy Group"]
+position = Vector2(989, 89)
+script = ExtResource("6_ob2pb")
+id = 5
+
+[node name="Cursor Spawn" type="Node2D" parent="Battle System/Enemy Group/Enemy 6"]
+position = Vector2(-20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Battle System/Enemy Group/Enemy 6"]
+
+[node name="Status Effect Manager" type="Node" parent="Battle System"]
+script = ExtResource("7_k6la1")
+
+[node name="Battle Info" type="Label" parent="Battle System"]
+offset_left = 536.0
+offset_top = 272.0
+offset_right = 576.0
+offset_bottom = 295.0
+text = "Holis"
