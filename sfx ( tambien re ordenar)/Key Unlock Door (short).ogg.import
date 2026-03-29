@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://6odfm2s2sons"
+path="res://.godot/imported/Key Unlock Door (short).ogg-2e955e5daae19df524941fb7e05e0efc.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx ( tambien re ordenar)/Key Unlock Door (short).ogg"
+dest_files=["res://.godot/imported/Key Unlock Door (short).ogg-2e955e5daae19df524941fb7e05e0efc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,58 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgbn0438tqru0"]
+[gd_scene format=3 uid="uid://bgbn0438tqru0"]
 
 [ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="1_cag7e"]
-[ext_resource type="Script" path="res://Scenes/Menus/Command Menu/command_menu.gd" id="1_ytx2b"]
-[ext_resource type="Script" path="res://button_action.gd" id="2_a2tk0"]
+[ext_resource type="Script" uid="uid://rvvhgyx6po17" path="res://Scenes/Menus/Command Menu/command_menu.gd" id="1_ytx2b"]
+[ext_resource type="Script" uid="uid://dtjadn1i8sgen" path="res://button_action.gd" id="2_a2tk0"]
 
-[node name="Command Menu" type="PanelContainer"]
+[node name="Command Menu" type="PanelContainer" unique_id=871623411]
 layout_direction = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 411.0
-offset_top = -318.0
-offset_right = 585.049
-offset_bottom = -143.951
+offset_left = 379.0
+offset_top = -409.0
+offset_right = 553.0491
+offset_bottom = -234.95093
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.75, 1.75)
 pivot_offset = Vector2(87.025, 0)
 script = ExtResource("1_ytx2b")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=936721559]
 layout_mode = 2
 
-[node name="Attack Button" type="Label" parent="VBoxContainer"]
+[node name="Attack Button" type="Label" parent="VBoxContainer" unique_id=119802959]
 layout_mode = 2
 text = "Attack"
 script = ExtResource("2_a2tk0")
 
-[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Attack Button"]
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Attack Button" unique_id=1299111655]
 
-[node name="Defend Button" type="Label" parent="VBoxContainer"]
+[node name="Defend Button" type="Label" parent="VBoxContainer" unique_id=803824206]
 layout_mode = 2
 text = "Defend"
 script = ExtResource("2_a2tk0")
 
-[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Defend Button"]
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Defend Button" unique_id=2106800110]
 
-[node name="Abilities Button" type="Label" parent="VBoxContainer"]
+[node name="Abilities Button" type="Label" parent="VBoxContainer" unique_id=1389501939]
 layout_mode = 2
 text = "Abilities"
 script = ExtResource("2_a2tk0")
 
-[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Abilities Button"]
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Abilities Button" unique_id=1875897485]
 
-[node name="Inventory Button" type="Label" parent="VBoxContainer"]
+[node name="Inventory Button" type="Label" parent="VBoxContainer" unique_id=441934064]
 visible = false
 layout_mode = 2
 text = "Inventory"
 script = ExtResource("2_a2tk0")
 
-[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Inventory Button"]
+[node name="Cursor Spawn" type="Node2D" parent="VBoxContainer/Inventory Button" unique_id=931626893]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1668458813]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_cag7e")

@@ -1,7 +1,7 @@
 class_name Delay extends Spell
 
 func _init():
-	inti_name = "Delay"
+	spell_name = "Delay"
 	element = 0
 	for_allies = false
 	cost = 4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://4jdelr7yusms"
+path="res://.godot/imported/Key Open Door.ogg-4ae9104233e1b1f2dcba63c648cf5b70.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx ( tambien re ordenar)/Key Open Door.ogg"
+dest_files=["res://.godot/imported/Key Open Door.ogg-4ae9104233e1b1f2dcba63c648cf5b70.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

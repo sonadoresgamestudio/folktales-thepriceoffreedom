@@ -1,5 +1,12 @@
-class_name Spell extends Inti
+class_name Spell extends Resource #repensar si necesitamos el inti despues de todo si no es un materia system
 
+var index: String #para rastrear en el json
+var spell_name: String
+var cost: int
+var upgrade_cost: int
+var battle_system: BattleSystem
+var game_manager: GameManager
+var icon: Texture2D
 var element: GameManager.Elements
 var for_allies: bool #qué "side", party members o enemigos? true es party memeber, false es enemigo
 var effect: AnimatedSprite2D

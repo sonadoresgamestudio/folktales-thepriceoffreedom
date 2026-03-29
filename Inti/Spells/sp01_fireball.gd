@@ -1,14 +1,14 @@
 class_name Fireball extends Spell
 
 func _init():
-	inti_name = "Bola de Fuego"
+	spell_name = "Fireball"
 	element = GameManager.Elements.FIRE
 	for_allies = false
 	cost = 3
 	upgrade_cost = 6
-	sfx = load("res://sfx ( tambien re ordenar)/Spell Fire 02.wav")
 
 func base_effect(user: Battler, objective: Battler):
+	sfx = load(game_manager.load_file("spell_fire_02_sfx"))
 	if battle_system.active_character.side:
 		battle_system.gamestate = battle_system.GameStates.ACTION
 	else:
@@ -21,9 +21,8 @@ func base_effect(user: Battler, objective: Battler):
 	var attacker_agility_aux = rng.randf_range(1, 1.30)
 	var defender_agility_aux = rng.randf_range(0.90, 1.20)
 	
-	var sfx = load("res://sfx ( tambien re ordenar)/Spell Fire 01.wav")
 	
-	await battle_system.show_message(user.unit_name + " ha lanzado una " + inti_name + " a " + objective.unit_name)
+	await battle_system.show_message(user.unit_name + " has cast a " + spell_name + " against " + objective.unit_name)
 	
 	if(battle_system.active_character.side):
 		battle_system.active_character.currentSP -= cost
@@ -33,6 +32,7 @@ func base_effect(user: Battler, objective: Battler):
 	battle_system.turn_manager()
 
 func boosted_effect(user: Battler, objective: Battler):
+	sfx = load(game_manager.load_file("spell_fire_02_sfx"))
 	if battle_system.active_character.side:
 		battle_system.gamestate = battle_system.GameStates.ACTION
 	else:
@@ -44,10 +44,9 @@ func boosted_effect(user: Battler, objective: Battler):
 	var rng = RandomNumberGenerator.new()
 	var attacker_agility_aux = rng.randf_range(1, 1.30)
 	var defender_agility_aux = rng.randf_range(0.70, 1)
-	var sfx = load("res://sfx ( tambien re ordenar)/Spell Fire 01.wav")
 	
 	
-	await battle_system.show_message(user.unit_name + " ha lanzado una " + inti_name + " mejorada a " + objective.unit_name)
+	await battle_system.show_message(user.unit_name + " has cast an upgraded " + spell_name + " against " + objective.unit_name)
 	
 	if(battle_system.active_character.side):
 		battle_system.active_character.currentSP -= upgrade_cost

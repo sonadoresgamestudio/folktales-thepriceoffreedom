@@ -8,14 +8,22 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Folk Tales: Fight For Freedom"
 run/main_scene="res://Scenes/Manager/game_manager.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.000113828, 0.000113828, 0.000113828, 1)
 boot_splash/image="res://assets visuales (reordenar y crear directorio de assets)/Logo fondo negro.png"
 config/icon="res://icon.svg"
+
+[autoload]
+
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [display]
 
@@ -24,6 +32,10 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 

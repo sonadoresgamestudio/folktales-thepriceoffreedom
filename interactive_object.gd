@@ -2,6 +2,7 @@ class_name InteractiveObject extends Area2D
 
 var first_time: bool = true
 @export var exploration_system: ExplorationSystem
+@onready var game_manager: GameManager = exploration_system.get_parent()
 @export var map: Node2D
 
 # Called when the node enters the scene tree for the first time.

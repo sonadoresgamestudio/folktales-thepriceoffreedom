@@ -32,16 +32,18 @@ func load_main_menu():
 	add_child(main_menu)
 
 func load_battle():
-	gamestate = GameStates.BATTLE
-	var scene_string: String = load_file("battle_system_scene")
-	var battle_system = load(scene_string).instantiate()
-	add_child(battle_system)
+	if(gamestate != GameStates.BATTLE):
+		gamestate = GameStates.BATTLE
+		var scene_string: String = load_file("battle_system_scene")
+		var battle_system = load(scene_string).instantiate()
+		add_child(battle_system)
 
 func load_map():
-	gamestate = GameStates.EXPLORATION
-	var scene_string: String = load_file("exploration_system_scene") #meterle polish
-	var exploration_system = load(scene_string).instantiate()
-	add_child(exploration_system)
+	if(gamestate != GameStates.EXPLORATION):
+		gamestate = GameStates.EXPLORATION
+		var scene_string: String = load_file("exploration_system_scene") #meterle polish
+		var exploration_system = load(scene_string).instantiate()
+		add_child(exploration_system)
 #endregion
 
 func delete_scenes(do_not: PackedScene):

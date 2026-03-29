@@ -1,6 +1,6 @@
 class_name AbilitiesMenu extends PanelContainer
 
-var inti_array: Array[Inti]
+var spell_array: Array[Spell]
 var cost_arrays: Array[Vector2i] #x = costo base, y = costo upgrade
 var ability: Ability
 var ability_array: Array[Ability]
@@ -8,15 +8,15 @@ var ability_array: Array[Ability]
 @onready var upgrade: Label = $Upgrade
 
 func initialize(active_fighter: Hero, battle_system: BattleSystem):
-	inti_array = active_fighter.inti_array
-	for i in inti_array.size():
-		if (inti_array[i] is Spell):
+	spell_array = active_fighter.spell_array
+	for i in spell_array.size():
+		if (spell_array[i] is Spell):
 			ability = load("res://Scenes/Menus/Abilities Menu/ability_scene.tscn").instantiate() #chequear esto para cuando volvés para atrás y luego para adelante
-			ability.ability_name.text = inti_array[i].inti_name
-			ability.action = Callable(inti_array[i], "is_selected")
-			ability.for_allies = inti_array[i].for_allies
-			ability.cost = inti_array[i].cost
-			ability.upgrade_cost = inti_array[i].upgrade_cost
+			ability.ability_name.text = spell_array[i].spell_name
+			ability.action = Callable(spell_array[i], "is_selected")
+			ability.for_allies = spell_array[i].for_allies
+			ability.cost = spell_array[i].cost
+			ability.upgrade_cost = spell_array[i].upgrade_cost
 			ability.cost_label.text = str(ability.cost)
 			ability.upgrade_cost_label.text = str(ability.upgrade_cost)
 			ability_array.append(ability)

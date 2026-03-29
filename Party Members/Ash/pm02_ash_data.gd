@@ -3,7 +3,7 @@ class_name AshData extends Unit
 var lvl: int
 var nextXP: int
 var is_in_party: bool
-var inti_array: Array[Inti] #el equivalente nuestro a la materia de ff7, "inti" es un nombre placeholder
+var spell_array: Array[Spell] #el equivalente nuestro a la materia de ff7, "inti" es un nombre placeholder
 
 var maxHP_w_e: int 
 var agility_w_e: int
@@ -43,8 +43,9 @@ func _init():
 	spiritCharge_w_e = spiritCharge
 	
 	#hechizos hardcodeados para el prototipo
-	inti_array.append(Iceball.new())
-	inti_array.append(Thunderball.new())
+	spell_array.append(Fireball.new())
+	spell_array.append(Iceball.new())
+	spell_array.append(Thunderball.new())
 
 func limit_break():
 	pass

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2yjmyaum1roe"]
+[gd_scene format=3 uid="uid://b2yjmyaum1roe"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/Abilities Menu/abilities_menu.gd" id="1_37f24"]
+[ext_resource type="Script" uid="uid://dquf1k6b6lrmf" path="res://Scenes/Menus/Abilities Menu/abilities_menu.gd" id="1_37f24"]
 [ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="2_4syrg"]
 
-[node name="AbilitiesMenu" type="PanelContainer"]
+[node name="AbilitiesMenu" type="PanelContainer" unique_id=1332881459]
+layout_direction = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -15,17 +16,19 @@ offset_right = 462.049
 offset_bottom = -141.951
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.75, 1.75)
+pivot_offset = Vector2(87.025, 0)
 script = ExtResource("1_37f24")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=22433208]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=997152224]
 layout_mode = 2
 texture = ExtResource("2_4syrg")
 expand_mode = 4
 
-[node name="Upgrade" type="Label" parent="."]
+[node name="Upgrade" type="Label" parent="." unique_id=1123220648]
 visible = false
 layout_mode = 2
 text = "UPGRADED"

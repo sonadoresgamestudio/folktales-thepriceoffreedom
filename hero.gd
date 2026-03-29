@@ -5,7 +5,7 @@ var nextXP
 var maxSP
 var currentSP
 
-var inti_array: Array[Inti]
+var spell_array: Array[Spell]
 
 func initialize() -> void:
 	if (id == 0):
@@ -41,12 +41,13 @@ func initialize() -> void:
 	
 	side = true
 	is_alive = true
-	inti_array = unit.inti_array
+	spell_array = unit.spell_array
 	
 	status_bar.position = Vector2(0, 15)
 	
-	for i in inti_array.size(): #preparo cada clase con el battle_system para que sepan qué corno leer
-		inti_array[i].battle_system = battle_system
+	for i in spell_array.size(): #preparo cada clase con el battle_system para que sepan qué corno leer
+		spell_array[i].battle_system = battle_system
+		spell_array[i].game_manager = battle_system.game_manager
 
 func die():
 	currentHP = 0

@@ -11,17 +11,17 @@ func initialize(battle_system: BattleSystem, array_ordered: int):
 			enemy_array.append(SkeletonKnight.new())
 			enemy_array.append(SkeletonKnight.new())
 		1:
-			enemy_array.append(FireSlime.new())
 			enemy_array.append(SkeletonKnight.new())
 			enemy_array.append(FireSlime.new())
+			enemy_array.append(SkeletonKnight.new())
 		2:
-			enemy_array.append(IceSlime.new())
 			enemy_array.append(SkeletonKnight.new())
 			enemy_array.append(IceSlime.new())
+			enemy_array.append(SkeletonKnight.new())
 		3:
-			enemy_array.append(ThunderSlime.new())
 			enemy_array.append(SkeletonKnight.new())
 			enemy_array.append(ThunderSlime.new())
+			enemy_array.append(SkeletonKnight.new())
 		4:
 			enemy_array.append(FireSlime.new())
 			enemy_array.append(ThunderSlime.new())

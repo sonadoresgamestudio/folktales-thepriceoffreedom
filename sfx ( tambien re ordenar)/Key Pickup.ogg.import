@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpgjbmob0pmt8"
+path="res://.godot/imported/Key Pickup.ogg-bb4254d18049fbf5c88cc31f4acc7c01.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx ( tambien re ordenar)/Key Pickup.ogg"
+dest_files=["res://.godot/imported/Key Pickup.ogg-bb4254d18049fbf5c88cc31f4acc7c01.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

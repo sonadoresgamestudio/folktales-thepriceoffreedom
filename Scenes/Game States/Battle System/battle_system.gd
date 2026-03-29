@@ -3,8 +3,8 @@ class_name BattleSystem extends Node #se tendría que aplicar un botón para dec
 #region declarando variables
 @onready var game_manager: GameManager = get_parent()
 @onready var exploration_system: ExplorationSystem = game_manager.get_node("Exploration System")
-@onready var music_player: AudioStreamPlayer = $"Audio Manager/Music Player"
-@onready var sfx_player: AudioStreamPlayer = $"Audio Manager/SFX Player"
+@export var music_player: AudioStreamPlayer
+@export var sfx_player: AudioStreamPlayer
 @export var background_music: Array[AudioStream]
 @onready var UI: CanvasLayer = $UI
 
@@ -99,7 +99,7 @@ func _ready():
 	#region inicializando enemigos
 	var rng = RandomNumberGenerator.new()
 	var array_list = ArrayList.new() #la clase con los array de enemigos posibles
-	array_list.initialize(self, rng.randi_range(0,4)) #se inicializa el cargar el array enemigo, cambiar el mínimo a 0 post expo
+	array_list.initialize(self, 2)#array_list.initialize(self, rng.randi_range(0,4)) #se inicializa el cargar el array enemigo, cambiar el mínimo a 0 post expo
 	e_size = enemy_array.size()
 	
 	for i in e_size:
@@ -166,15 +166,21 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					command_cursor_pos = cursor.command_cursor_spawn.size() - 1 #debe haber un problema donde haya que sacar la variable cursor de la funcion en la que esta, pero "cursor" ya está declarado como del tipo "Cursor" con mayúsucla que tiene el array command_... ni idea
 				else: 
 					command_cursor_pos = command_cursor_pos - 1
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
+				sfx_player.play()
 			if Input.is_action_just_pressed("down"):
 				if (command_cursor_pos == cursor.command_cursor_spawn.size() - 1):
 					command_cursor_pos = 0
 				else: 
 					command_cursor_pos = command_cursor_pos + 1
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
+				sfx_player.play()
 			if(cursor != null):
 				cursor.set_cursor_position(0, command_cursor_pos)
 			if (Input.is_action_just_pressed("confirm")):
 				cursor.command_cursor_spawn[command_cursor_pos].get_parent().action.call()
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
+				sfx_player.play()
 		GameStates.CHOOSE_TARGET: #hay un error cuando querés dar vuelta el for allies
 			if (Input.is_action_just_pressed("up") || Input.is_action_just_pressed("down")):
 				for_allies = !for_allies
@@ -183,6 +189,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					cursor.set_cursor_position(1, target_cursor_pos)
 				else:
 					cursor.set_cursor_position(2, target_cursor_pos)
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
+				sfx_player.play()
 			if (Input.is_action_just_pressed("left")):
 				if(for_allies):
 					if(target_cursor_pos == 0):
@@ -194,6 +202,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 						target_cursor_pos = cursor.enemy_cursor_spawn.size() - 1
 					else:
 						target_cursor_pos -= 1
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
+				sfx_player.play()
 			if (Input.is_action_just_pressed("right")):
 				if(for_allies):
 					if(target_cursor_pos == cursor.hero_cursor_spawn.size() - 1):
@@ -212,6 +222,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					cursor.set_cursor_position(2, target_cursor_pos)
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
+				sfx_player.play()
 			if (Input.is_action_just_pressed("cancel")):
 				active_turn()
 		GameStates.CHOOSE_ABILITY:
@@ -222,6 +234,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					ability_cursor_pos = cursor.abilities_cursor_spawn.size() - 1 #debe haber un problema donde haya que sacar la variable cursor de la funcion en la que esta, pero "cursor" ya está declarado como del tipo "Cursor" con mayúsucla que tiene el array command_... ni idea
 				else: 
 					ability_cursor_pos = ability_cursor_pos - 1
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
+				sfx_player.play()
 			if (Input.is_action_just_pressed("down")):
 				is_upgrading = false
 				abilities_menu.upgrade.visible = false
@@ -229,6 +243,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					ability_cursor_pos = 0
 				else: 
 					ability_cursor_pos = ability_cursor_pos + 1
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
+				sfx_player.play()
 			if ((Input.is_action_just_pressed("left")) or (Input.is_action_just_pressed("right"))):
 				is_upgrading = !is_upgrading
 				abilities_menu.upgrade.visible = !abilities_menu.upgrade.visible
@@ -240,6 +256,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 						choose_target(cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().action, cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().for_allies)
 						abilities_menu.hide()
 						abilities_menu.reset_menu(self)
+						sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
+						sfx_player.play()
 					else:
 						var text_aux = battle_info.text 
 						gamestate = GameStates.MESSAGE_SHOWN
@@ -255,6 +273,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 						choose_target(cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().action, cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().for_allies) #chequear cómo hacer para que tome el upgrade
 						abilities_menu.hide()
 						abilities_menu.reset_menu(self)
+						sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
+						sfx_player.play()
 					else:
 						var text_aux = battle_info.text 
 						gamestate = GameStates.MESSAGE_SHOWN
@@ -273,10 +293,14 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 		GameStates.ACTION:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
+				sfx_player.play()
 				cursor.set_cursor_position(0, 0) #por qué esto acá especificamente y no cuando reinicia el turno o cuanndo quiero volver atras?
 		GameStates.ENEMY:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
+				sfx_player.play()
 		GameStates.WON:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
@@ -286,6 +310,8 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 		GameStates.MESSAGE_SHOWN:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
+				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
+				sfx_player.play()
 
 #region set who's turn it is
 func turn_manager():
@@ -478,7 +504,7 @@ func physical_attack(defender: Battler):
 	else:
 		sfx = load("res://sfx ( tambien re ordenar)/Spell Bad 01.wav")
 	
-	await show_message(active_character.unit_name + " ha atacado a " + defender.unit_name)
+	await show_message(active_character.unit_name + " has attacked " + defender.unit_name)
 	
 	await process_damage(defender, _active_character_agility, _active_character_agility_aux, defender_agility, defender_agility_aux, attack, defense, false, Callable(), 5, false, sfx)
 	
@@ -562,7 +588,7 @@ func process_damage(objective: Battler, user_agility: int, user_agility_aux: int
 		#damage_counter.damage = damage
 		#add_child(damage_counter)
 		#damage_counter.position = objective.position
-		await show_message(active_character.unit_name + " has done" + str(damage) + " of damage to " + objective.unit_name + ".")
+		await show_message(active_character.unit_name + " has done " + str(damage) + " points of damage to " + objective.unit_name + ".")
 		if (damage <= 0):
 			sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Shield 02.wav"))
 			sfx_player.play(0)
@@ -578,7 +604,7 @@ func process_damage(objective: Battler, user_agility: int, user_agility_aux: int
 			if (objective.side):
 				await show_message(objective.unit_name + " has been knocked out...")
 			else:
-				await show_message(active_character.unit_name + " has slained" + objective.unit_name + "!")	
+				await show_message(active_character.unit_name + " has slained " + objective.unit_name + "!")	
 			objective.die()
 		else:
 			if (is_upgraded):

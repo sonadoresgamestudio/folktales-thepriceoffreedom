@@ -13,9 +13,13 @@ func _process(delta: float) -> void:
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if (Input.is_action_just_pressed("left_click")):
-		if(map.has_key):
-			await exploration_system.show_message(load("res://NoeliaDialogue.png"),"Noelia", "Can't wait to get out of here! :D")
-			await exploration_system.show_message(load("res://AshDialogue.png"),"Ash", "Just unlock it already...")
-		else:
-			await exploration_system.show_message(load("res://NoeliaDialogue.png"),"Noelia", "Hey, a door!")
-			await exploration_system.show_message(load("res://AshDialogue.png"),"Ash", "Try the knob.")
+		if(!exploration_system.is_there_text):
+			exploration_system.is_there_text = true
+			if(map.has_key):
+				await exploration_system.show_message(load(game_manager.load_file("noelia_dialogue_idle")),"Noelia", "Can't wait to get out of here! :D")
+				await exploration_system.show_message(load(game_manager.load_file("ash_dialogue_idle")),"Ash", "Just unlock it already...")
+			else:
+				await exploration_system.show_message(load(game_manager.load_file("noelia_dialogue_idle")),"Noelia", "Hey, a door!")
+				await exploration_system.show_message(load(game_manager.load_file("ash_dialogue_idle")),"Ash", "Try the knob.")
+			await get_tree().create_timer(0.1).timeout
+			exploration_system.is_there_text = false

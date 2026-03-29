@@ -3,8 +3,12 @@ class_name ExplorationSystem extends Node
 @onready var game_manager: GameManager = get_parent()
 #@onready var player_manager: PlayerManager = get_node("Player")
 @onready var current_map: Node2D = get_node("Prototype Map")
-
+@export var music_player: AudioStreamPlayer
+@export var sfx_player: AudioStreamPlayer
+@export var sfx1: AudioStream
+@export var sfx2: AudioStream
 var inventory: Dictionary
+var is_there_text: bool = false
 
 @export var exploration_text: ExplorationText
 
@@ -17,7 +21,7 @@ signal accept
 
 func _ready() -> void:
 	gamestate = GameStates.SEARCH
-#
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event: InputEvent) -> void:
 	match(gamestate):

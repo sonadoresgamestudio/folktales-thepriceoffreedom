@@ -3,7 +3,7 @@ class_name OmarData extends Unit
 var lvl: int
 var nextXP: int
 var is_in_party: bool
-var inti_array: Array[Inti] #el equivalente nuestro a la materia de ff7, "inti" es un nombre placeholder
+var spell_array: Array[Spell] #el equivalente nuestro a la materia de ff7, "inti" es un nombre placeholder
 
 var maxHP_w_e: int 
 var agility_w_e: int
@@ -46,8 +46,8 @@ func _init():
 	
 	
 	#hechizos hardcodeados para el prototipo
-	inti_array.append(Fireball.new())
-	inti_array.append(Heal.new())
+	spell_array.append(Fireball.new())
+	spell_array.append(Heal.new())
 
 func limit_break():
 	pass

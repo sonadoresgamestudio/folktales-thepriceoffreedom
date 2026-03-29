@@ -1,7 +1,7 @@
 class_name Hurry extends Spell
 
 func _init():
-	inti_name = "Hurry"
+	spell_name = "Hurry"
 	element = 0
 	for_allies = true
 	cost = 5

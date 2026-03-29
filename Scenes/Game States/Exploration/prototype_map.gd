@@ -1,9 +1,12 @@
 class_name PrototypeMap extends Node2D
 
-@onready var exploration_system: ExplorationSystem = get_parent()
+@export var exploration_system: ExplorationSystem
+@onready var game_manager: GameManager = exploration_system.get_parent()
 @onready var room_1: Node2D = get_node("Room 1")
 @onready var room_2: Node2D = get_node("Room 2")
 @onready var go_to: Button = exploration_system.get_node("UI/Go To Button")
+@export var room_1_sprite: Texture
+@export var room_2_sprite: Texture
 var steps: int #para saber el punto de la historia
 var box_has_key: bool = false
 var has_seen_door: bool = false
@@ -12,7 +15,12 @@ var door_is_open: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	await get_tree().create_timer(0.1).timeout
+	await exploration_system.show_message(load(game_manager.load_file("noelia_dialogue_idle")),"Noelia", "Damn, it's nice to finally be free. Thanks, I guess.")
+	await exploration_system.show_message(load(game_manager.load_file("ash_dialogue_idle")),"Ash", "No time for thanks.")
+	await exploration_system.add_message(load(game_manager.load_file("ash_dialogue_idle")),"Ash", "Get moving and let's get out of here.")
+	await exploration_system.show_message(load(game_manager.load_file("noelia_dialogue_idle")),"Noelia", "Right. Let's go!")
+	await get_tree().create_timer(0.1).timeout
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,8 +32,10 @@ func _on_go_to_button_pressed() -> void:
 	if(exploration_system.gamestate == exploration_system.GameStates.SEARCH):
 		if (room_1.visible):
 			go_to.text = "Go to CELL"
+			get_node("Fondo").texture =  room_2_sprite
 		if (room_2.visible):
 			go_to.text = "Go to DOOR"
+			get_node("Fondo").texture =  room_1_sprite
 		room_1.visible = !room_1.visible
 		room_2.visible = !room_2.visible
 		exploration_system.exploration_text.visible = false

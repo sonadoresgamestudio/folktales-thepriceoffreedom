@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1b4unbt86w0w"]
+[gd_scene format=3 uid="uid://d1b4unbt86w0w"]
 
-[ext_resource type="Script" path="res://Scenes/Game States/Main Menu/main_menu.gd" id="1_w8f48"]
-[ext_resource type="Texture2D" uid="uid://bhktr1lc6xfn3" path="res://assets visuales (reordenar y crear directorio de assets)/FondoInicial.png" id="2_2kfc1"]
+[ext_resource type="Script" uid="uid://doi5ffk4km4j8" path="res://Scenes/Game States/Main Menu/main_menu.gd" id="1_w8f48"]
+[ext_resource type="Texture2D" uid="uid://boxevkniq57f" path="res://assets visuales (reordenar y crear directorio de assets)/Backgrounds, batalla (assets)/Portada.png" id="2_6fdyx"]
 [ext_resource type="PackedScene" uid="uid://41ks2saf45wj" path="res://Scenes/Audio Manager/audio_manager.tscn" id="3_snxc2"]
 
-[node name="Main Menu" type="Node"]
+[node name="Main Menu" type="Node" unique_id=100859629]
 script = ExtResource("1_w8f48")
 
-[node name="Título_ FOLK TALES" type="TextureRect" parent="."]
+[node name="Título_ FOLK TALES" type="TextureRect" parent="." unique_id=1885361865]
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_2kfc1")
+texture = ExtResource("2_6fdyx")
 
-[node name="Audio Manager" parent="." instance=ExtResource("3_snxc2")]
+[node name="Audio Manager" parent="." unique_id=100673983 instance=ExtResource("3_snxc2")]

@@ -10,6 +10,7 @@ func _init():
 func isTurn(battle_system: BattleSystem):
 	var fireball = Fireball.new()
 	fireball.battle_system = battle_system
+	fireball.game_manager = battle_system.game_manager
 	
 	if (battle_system.active_character.currentHP <= maxHP * 0.1):
 		var rng = RandomNumberGenerator.new()
