@@ -1,7 +1,7 @@
 class_name Battler extends CharacterBody2D
 
 @export var battle_system: BattleSystem
-
+@onready var game_manager: GameManager = battle_system.get_parent()
 var unit_name: String
 var level: int
 var XP: int

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c7uxxeerjm57j"]
+
+[ext_resource type="Script" uid="uid://6d6v0fvhwjq" path="res://object_hinter.gd" id="1_tio7i"]
+
+[node name="Object Hinter" type="Node2D" unique_id=434853346]
+script = ExtResource("1_tio7i")

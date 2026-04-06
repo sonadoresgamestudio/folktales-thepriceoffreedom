@@ -8,7 +8,7 @@ func _init():
 	upgrade_cost = 6
 
 func base_effect(user: Battler, objective: Battler):
-	sfx = load(game_manager.load_file("spell_good_02_sfx"))
+	sfx = "spell_good_02_sfx"
 	var heal_power = user.magical_strength * 0.4 #formula placeholder
 	
 	await battle_system.show_message(user.unit_name + " is healing " + objective.unit_name + "!")
@@ -27,7 +27,7 @@ func base_effect(user: Battler, objective: Battler):
 	battle_system.turn_manager()
 
 func boosted_effect(user: Node2D, objective: Node2D):
-	sfx = load(game_manager.load_file("spell_good_02_sfx"))
+	sfx = "spell_good_02_sfx"
 	await battle_system.show_message(user.unit_name + " is fully healing " + objective.unit_name + "!")
 	battle_system.sfx_player.set_stream(sfx)
 	battle_system.sfx_player.play(0)

@@ -17,7 +17,7 @@ var spiritCharge_w_e: int
 
 func _init():
 	
-	maxHP = 100
+	maxHP = 80
 	currentHP = maxHP
 	physical_strength = 12
 	physical_defense = 13
@@ -25,7 +25,7 @@ func _init():
 	magical_defense = 13
 	agility = 10
 	spiritCharge = 5
-	maxSP = 20
+	maxSP = 25
 	
 	move_animation_speed = 700
 	

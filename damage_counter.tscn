@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://wbs67jivpt37"]
+[gd_scene format=3 uid="uid://wbs67jivpt37"]
 
-[ext_resource type="Script" path="res://damage_counter.gd" id="1_5id4v"]
+[ext_resource type="Script" uid="uid://bbeubnc03gb7s" path="res://damage_counter.gd" id="1_5id4v"]
 
-[node name="Damage Counter" type="Node2D" node_paths=PackedStringArray("label")]
+[node name="Damage Counter" type="Node2D" unique_id=33075211 node_paths=PackedStringArray("label")]
+z_index = 5
 script = ExtResource("1_5id4v")
 label = NodePath("Label")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=269612979]
 offset_right = 40.0
 offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1

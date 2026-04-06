@@ -1,0 +1,15 @@
+{
+  "battle_cursor_select": "res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav",
+  "battle_cursor_accept": "res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav",
+  "start": "res://sfx ( tambien re ordenar)/Menu - Press Start 01.wav",
+  "sword_sfx": "res://sfx ( tambien re ordenar)/Sword 01.wav",
+  "spell_bad_sfx": "res://sfx ( tambien re ordenar)/Spell Bad 01.wav",
+  "spell_bad_02_sfx": "res://sfx ( tambien re ordenar)/Spell Bad 02.wav",
+  "spell_good_01_sfx": "res://sfx ( tambien re ordenar)/Spell Good 01.wav",
+  "spell_good_02_sfx": "res://sfx ( tambien re ordenar)/Spell Good 02.wav",
+  "spell_fire_01_sfx": "res://sfx ( tambien re ordenar)/Spell Fire 01.wav",
+  "spell_fire_02_sfx": "res://sfx ( tambien re ordenar)/Spell Fire 02.wav",
+  "spell_ice_sfx": "res://sfx ( tambien re ordenar)/Spell Ice.wav",
+  "spell_thunder_sfx": "res://sfx ( tambien re ordenar)/Spell Thunder.ogg",
+  "shield_sfx": "res://sfx ( tambien re ordenar)/Shield 02.wav",
+}

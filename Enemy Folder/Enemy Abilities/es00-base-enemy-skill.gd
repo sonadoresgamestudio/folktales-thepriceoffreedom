@@ -3,8 +3,8 @@ class_name BaseEnemySkill extends Resource
 func choose_target(battle_system: BattleSystem) -> Node2D:
 	var noelia
 	var ash
-	noelia = battle_system.noelia
-	ash = battle_system.ash
+	noelia = battle_system.party_member_1
+	ash = battle_system.party_member_2
 	if (noelia.is_alive and ash.is_alive):
 		var rng
 		rng = RandomNumberGenerator.new()

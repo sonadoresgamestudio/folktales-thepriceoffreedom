@@ -8,7 +8,7 @@ func _init():
 	upgrade_cost = 6
 
 func base_effect(user: Battler, objective: Battler):
-	sfx = load(game_manager.load_file("spell_fire_02_sfx"))
+	sfx = "spell_fire_02_sfx"
 	if battle_system.active_character.side:
 		battle_system.gamestate = battle_system.GameStates.ACTION
 	else:
@@ -32,7 +32,7 @@ func base_effect(user: Battler, objective: Battler):
 	battle_system.turn_manager()
 
 func boosted_effect(user: Battler, objective: Battler):
-	sfx = load(game_manager.load_file("spell_fire_02_sfx"))
+	sfx = "spell_fire_02_sfx"
 	if battle_system.active_character.side:
 		battle_system.gamestate = battle_system.GameStates.ACTION
 	else:

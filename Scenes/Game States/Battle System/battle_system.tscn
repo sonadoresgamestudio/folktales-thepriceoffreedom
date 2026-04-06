@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dlg1w6psksxir" path="res://Enemy Folder/enemy_group.gd" id="5_g5mrd"]
 [ext_resource type="Script" uid="uid://bajhbcmeiqug4" path="res://Enemy Folder/enemy.gd" id="6_pcsno"]
 [ext_resource type="Texture2D" uid="uid://51qjbtqfm0du" path="res://assets visuales (reordenar y crear directorio de assets)/Backgrounds, batalla (assets)/DungeonCombat.png" id="10_1qgew"]
+[ext_resource type="Script" uid="uid://ddj1pmssbgmfh" path="res://Scenes/Audio Manager/audio_manager.gd" id="10_lvxkt"]
 [ext_resource type="Texture2D" uid="uid://bb4jhjaugprkg" path="res://assets visuales (reordenar y crear directorio de assets)/Noelia.png" id="13_1qgew"]
 [ext_resource type="Texture2D" uid="uid://cgwsa8nrtrox6" path="res://assets visuales (reordenar y crear directorio de assets)/Ash.png" id="14_lvxkt"]
 [ext_resource type="Texture2D" uid="uid://d2e1pce6xh8cr" path="res://assets visuales (reordenar y crear directorio de assets)/CuadroSkills.png" id="16_rcmv5"]
@@ -31,17 +32,16 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nig51"]
 
-[node name="Battle System" type="Node" unique_id=2052815499 node_paths=PackedStringArray("music_player", "sfx_player", "noelia", "noeliaHpLabel", "noeliaSpLabel", "ash", "ashHpLabel", "ashSpLabel", "enemy_group", "battle_info", "turn_order_panel")]
+[node name="Battle System" type="Node" unique_id=2052815499 node_paths=PackedStringArray("audio_manager", "party_member_1", "party_member_1_HpLabel", "party_member_1_SpLabel", "party_member_2", "party_member_2_HpLabel", "party_member_2_SpLabel", "enemy_group", "battle_info", "turn_order_panel")]
 script = ExtResource("1_adrcq")
-music_player = NodePath("Audio Manager/Music Player")
-sfx_player = NodePath("Audio Manager/SFX Player")
+audio_manager = NodePath("Audio Manager")
 background_music = Array[AudioStream]([ExtResource("2_b42py"), ExtResource("3_2p83y"), ExtResource("4_ged2m"), ExtResource("5_16pf6")])
-noelia = NodePath("Hero Group/Party Member 1")
-noeliaHpLabel = NodePath("UI/Noelia/NoeliaHPLabel")
-noeliaSpLabel = NodePath("UI/Noelia/NoeliaHPLabel/NoeliaSPLabel")
-ash = NodePath("Hero Group/Party Member 2")
-ashHpLabel = NodePath("UI/Ash/AshHPLabel")
-ashSpLabel = NodePath("UI/Ash/AshHPLabel/AshSPLabel")
+party_member_1 = NodePath("Hero Group/Party Member 1")
+party_member_1_HpLabel = NodePath("UI/Noelia/NoeliaHPLabel")
+party_member_1_SpLabel = NodePath("UI/Noelia/NoeliaHPLabel/NoeliaSPLabel")
+party_member_2 = NodePath("Hero Group/Party Member 2")
+party_member_2_HpLabel = NodePath("UI/Ash/AshHPLabel")
+party_member_2_SpLabel = NodePath("UI/Ash/AshHPLabel/AshSPLabel")
 enemy_group = NodePath("Enemy Group")
 battle_info = NodePath("UI/Battle Info")
 turn_order_panel = NodePath("UI/Turn Order Panel")
@@ -210,7 +210,10 @@ offset_top = 129.0
 offset_right = 34.0
 offset_bottom = 169.0
 
-[node name="Audio Manager" type="Node" parent="." unique_id=2087360215]
+[node name="Audio Manager" type="Node" parent="." unique_id=2087360215 node_paths=PackedStringArray("music_player", "sfx_player")]
+script = ExtResource("10_lvxkt")
+music_player = NodePath("Music Player")
+sfx_player = NodePath("SFX Player")
 
 [node name="Music Player" type="AudioStreamPlayer" parent="Audio Manager" unique_id=628155273]
 

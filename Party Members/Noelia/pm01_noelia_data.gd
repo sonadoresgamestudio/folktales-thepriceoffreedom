@@ -25,7 +25,7 @@ func _init():
 	magical_defense = 12
 	agility = 8
 	spiritCharge = 4
-	maxSP = 20
+	maxSP = 15
 	
 	move_animation_speed = 500
 	

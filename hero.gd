@@ -9,9 +9,9 @@ var spell_array: Array[Spell]
 
 func initialize() -> void:
 	if (id == 0):
-		unit = battle_system.game_manager.noelia_data #estas líneas hay que corregirlas luego
+		unit = game_manager.noelia_data #estas líneas hay que corregirlas luego
 	else:
-		unit = battle_system.game_manager.ash_data
+		unit = game_manager.ash_data
 	
 	side = true
 	unit_name = unit.unit_name

@@ -3,22 +3,21 @@ class_name BattleSystem extends Node #se tendría que aplicar un botón para dec
 #region declarando variables
 @onready var game_manager: GameManager = get_parent()
 @onready var exploration_system: ExplorationSystem = game_manager.get_node("Exploration System")
-@export var music_player: AudioStreamPlayer
-@export var sfx_player: AudioStreamPlayer
+@export var audio_manager: AudioManager
 @export var background_music: Array[AudioStream]
 @onready var UI: CanvasLayer = $UI
 
-@export var noelia: Hero
-@export var noeliaHpLabel: Label
-@export var noeliaSpLabel: Label
+@export var party_member_1: Hero
+@export var party_member_1_HpLabel: Label
+@export var party_member_1_SpLabel: Label
 
-@export var ash: Hero
-@export var ashHpLabel: Label
-@export var ashSpLabel: Label
+@export var party_member_2: Hero
+@export var party_member_2_HpLabel: Label
+@export var party_member_2_SpLabel: Label
 
-@export var omar: Hero
-@export var omarHpLabel: Label
-@export var omarSpLabel: Label
+@export var party_member_3: Hero
+@export var party_member_3_HpLabel: Label
+@export var party_member_3_SpLabel: Label
 #tener en cuenta el posible #guestcharacter
 
 var hero_array: Array[Hero]
@@ -27,7 +26,6 @@ var active_character: Battler #vamos a usar los party member y enemy acá
 
 var animated_sprite: AnimatedSprite2D
 
-#@export var _dungeon_manager: DungeonManager
 
 @export var enemy_group: EnemyGroup #esta variable hace referencia al nodo dentro de la escena del battle system
 
@@ -67,28 +65,27 @@ signal accept
 func _ready():
 	
 	exploration_system.queue_free()
-	music_player.set_stream(background_music[0])
-	music_player.play(0)
+	audio_manager.music_player.set_stream(background_music[0])
+	audio_manager.music_player.play(0)
 	
 	#region inicializando party members
 	#chequear si están los party members necesarios
-	noelia.unit = game_manager.noelia_data
-	ash.unit = game_manager.ash_data
-	noelia.initialize()
-	ash.initialize()
+	
+	party_member_1.initialize()
+	party_member_2.initialize()
 	#_level = _dungeon_manager.level
 	
-	var _noeliaagility = noelia.agility
-	var _noeliaagilityaux = noelia.agility
+	var _party_member_1_agility = party_member_1.agility
+	var _party_member_1_agilityaux = party_member_1.agility
 	
-	var _ashagility = ash.agility
-	var _ashagilityaux = ash.agility
+	var _party_member_2_agility = party_member_2.agility
+	var _party_member_2_agilityaux = party_member_2.agility
 	
 	
-	if (noelia != null): # tener un #guestcharacter
-		hero_array.append(noelia)
-	if (ash != null):
-		hero_array.append(ash)
+	if (party_member_1 != null): # tener un #guestcharacter
+		hero_array.append(party_member_1)
+	if (party_member_2 != null):
+		hero_array.append(party_member_2)
 	
 	h_size = hero_array.size()
 	
@@ -166,21 +163,18 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					command_cursor_pos = cursor.command_cursor_spawn.size() - 1 #debe haber un problema donde haya que sacar la variable cursor de la funcion en la que esta, pero "cursor" ya está declarado como del tipo "Cursor" con mayúsucla que tiene el array command_... ni idea
 				else: 
 					command_cursor_pos = command_cursor_pos - 1
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_select")
 			if Input.is_action_just_pressed("down"):
 				if (command_cursor_pos == cursor.command_cursor_spawn.size() - 1):
 					command_cursor_pos = 0
 				else: 
 					command_cursor_pos = command_cursor_pos + 1
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_select")
 			if(cursor != null):
 				cursor.set_cursor_position(0, command_cursor_pos)
 			if (Input.is_action_just_pressed("confirm")):
 				cursor.command_cursor_spawn[command_cursor_pos].get_parent().action.call()
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_accept")
 		GameStates.CHOOSE_TARGET: #hay un error cuando querés dar vuelta el for allies
 			if (Input.is_action_just_pressed("up") || Input.is_action_just_pressed("down")):
 				for_allies = !for_allies
@@ -189,8 +183,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					cursor.set_cursor_position(1, target_cursor_pos)
 				else:
 					cursor.set_cursor_position(2, target_cursor_pos)
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_select")
 			if (Input.is_action_just_pressed("left")):
 				if(for_allies):
 					if(target_cursor_pos == 0):
@@ -202,8 +195,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 						target_cursor_pos = cursor.enemy_cursor_spawn.size() - 1
 					else:
 						target_cursor_pos -= 1
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_select")
 			if (Input.is_action_just_pressed("right")):
 				if(for_allies):
 					if(target_cursor_pos == cursor.hero_cursor_spawn.size() - 1):
@@ -215,6 +207,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 						target_cursor_pos = 0
 					else:
 						target_cursor_pos += 1
+				audio_manager.load_sfx("battle_cursor_select")
 			if (cursor != null):
 				if (for_allies):
 					cursor.set_cursor_position(1, target_cursor_pos)
@@ -222,8 +215,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					cursor.set_cursor_position(2, target_cursor_pos)
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_accept")
 			if (Input.is_action_just_pressed("cancel")):
 				active_turn()
 		GameStates.CHOOSE_ABILITY:
@@ -234,8 +226,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					ability_cursor_pos = cursor.abilities_cursor_spawn.size() - 1 #debe haber un problema donde haya que sacar la variable cursor de la funcion en la que esta, pero "cursor" ya está declarado como del tipo "Cursor" con mayúsucla que tiene el array command_... ni idea
 				else: 
 					ability_cursor_pos = ability_cursor_pos - 1
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_select")
 			if (Input.is_action_just_pressed("down")):
 				is_upgrading = false
 				abilities_menu.upgrade.visible = false
@@ -243,8 +234,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 					ability_cursor_pos = 0
 				else: 
 					ability_cursor_pos = ability_cursor_pos + 1
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Cursor Select.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_select")
 			if ((Input.is_action_just_pressed("left")) or (Input.is_action_just_pressed("right"))):
 				is_upgrading = !is_upgrading
 				abilities_menu.upgrade.visible = !abilities_menu.upgrade.visible
@@ -256,8 +246,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 						choose_target(cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().action, cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().for_allies)
 						abilities_menu.hide()
 						abilities_menu.reset_menu(self)
-						sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
-						sfx_player.play()
+						audio_manager.load_sfx("battle_cursor_accept")
 					else:
 						var text_aux = battle_info.text 
 						gamestate = GameStates.MESSAGE_SHOWN
@@ -273,8 +262,7 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 						choose_target(cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().action, cursor.abilities_cursor_spawn[ability_cursor_pos].get_parent().for_allies) #chequear cómo hacer para que tome el upgrade
 						abilities_menu.hide()
 						abilities_menu.reset_menu(self)
-						sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
-						sfx_player.play()
+						audio_manager.load_sfx("battle_cursor_accept")
 					else:
 						var text_aux = battle_info.text 
 						gamestate = GameStates.MESSAGE_SHOWN
@@ -293,14 +281,11 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 		GameStates.ACTION:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
-				sfx_player.play()
 				cursor.set_cursor_position(0, 0) #por qué esto acá especificamente y no cuando reinicia el turno o cuanndo quiero volver atras?
 		GameStates.ENEMY:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_accept")
 		GameStates.WON:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
@@ -310,15 +295,14 @@ func _process(_delta: float) -> void: #desglosar en input() y process()
 		GameStates.MESSAGE_SHOWN:
 			if (Input.is_action_just_pressed("confirm")):
 				accept.emit()
-				sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Menu Battle - Accept.wav"))
-				sfx_player.play()
+				audio_manager.load_sfx("battle_cursor_accept")
 
 #region set who's turn it is
 func turn_manager():
 	gamestate = GameStates.SORTING
 	
 	
-	if (!noelia.is_alive and !ash.is_alive):
+	if (!party_member_1.is_alive and !party_member_2.is_alive):
 		await _battleLost()
 		return
 	
@@ -440,7 +424,7 @@ func choose_target(ActionChosen: Callable, is_for_allies: bool): #adaptalo al es
 	
 	if (is_for_allies):
 		for_allies = true
-		if (noelia.is_alive):
+		if (party_member_1.is_alive):
 			target_cursor_pos = 0
 		else:
 			target_cursor_pos = 1
@@ -496,17 +480,18 @@ func physical_attack(defender: Battler):
 	var defender_agility: int = defender.agility
 	var rng = RandomNumberGenerator.new()
 	var _active_character_agility_aux = rng.randf_range(_active_character_agility * 0.90, _active_character_agility * 1.20)
-	var defender_agility_aux = rng.randf_range(defender_agility * 0.5, defender_agility * 0.75)#this is the result of the attack, no need to make a statement for a one-use variable
-	var sfx
+	var defender_agility_aux = rng.randf_range(defender_agility * 0.85, defender_agility)#this is the result of the attack, no need to make a statement for a one-use variable
+	var sfx: String
 	
 	if (gamestate == GameStates.ACTION):
-		sfx = load("res://sfx ( tambien re ordenar)/Sword 01.wav")
+		sfx = "sword_sfx"
 	else:
-		sfx = load("res://sfx ( tambien re ordenar)/Spell Bad 01.wav")
+		sfx = "spell_bad_sfx"
+	
 	
 	await show_message(active_character.unit_name + " has attacked " + defender.unit_name)
 	
-	await process_damage(defender, _active_character_agility, _active_character_agility_aux, defender_agility, defender_agility_aux, attack, defense, false, Callable(), 5, false, sfx)
+	await process_damage(defender, _active_character_agility, _active_character_agility_aux, defender_agility, defender_agility_aux, attack, defense, false, Callable(), GameManager.Elements.PHYSICAL, false, sfx)
 	
 	turn_manager()
 
@@ -521,6 +506,54 @@ func check_elemental_modifier(objective: Battler, damage: int, element: GameMana
 			return damage * 1.5
 	return damage
 
+func process_damage(objective: Battler, user_agility: int, user_agility_aux: int, objective_agility: int, objective_agility_aux: int, attack: int, defense: int, is_upgraded: bool, extra: Callable, element: GameManager.Elements, is_spell: bool, sfx: String): #unificar los cálculos de daño acá
+	var rng = RandomNumberGenerator.new()
+	var activate_extra: bool = false
+	#necesitamos animación/sfx para cuando arranca un ataque y para cuando este pega en el objetivo
+	
+	audio_manager.load_sfx(sfx)
+	
+	if (user_agility_aux <= objective_agility_aux): #"Denesting" aplicado
+		await show_message("The attack was dodged.")
+		return
+	
+	
+	var damage: int
+	if (objective.side && objective.is_defending):
+		damage = int((round(attack * rng.randf_range(1.2, 1.25)) - (defense/2 * rng.randf_range(1.1, 1.2)))) * 5
+	else:
+		damage = int(round(attack * rng.randf_range(1.2, 1.25)) - (defense * rng.randf_range(1.1, 1.2))) * 5
+	damage = check_elemental_modifier(objective, damage, element)
+	
+	damage_counter = load("res://damage_counter.tscn").instantiate()
+	damage_counter.damage = damage
+	add_child(damage_counter)
+	damage_counter.position = objective.position
+	
+	await show_message(active_character.unit_name + " has done " + str(damage) + " points of damage to " + objective.unit_name + ".")
+	if (damage <= 0):
+		audio_manager.load_sfx("shield_sfx")
+		await show_message("The attack has been blocked.")
+	else:
+		objective.currentHP -= damage #agregar otro sonido para cuando ataca
+	#if (active_character.side and !is_inti):
+		#active_character.currentSP = add_spirit_points(active_character.currentSP, active_character.spiritCharge, active_character.maxSP, active_character.unit_name)
+	#else:
+		#if (objective.side && objective.currentHP >= 0):
+			#objective.currentSP = add_spirit_points(objective.currentSP, active_character.spiritCharge, objective.maxSP, objective.unit_name) #crear algo para decidir cuanto carga el spirit_points acá y no usar el defense charge
+	if (objective.currentHP <= 0):
+		if (objective.side):
+			await show_message(objective.unit_name + " has been knocked out...")
+		else:
+			await show_message(active_character.unit_name + " has slained " + objective.unit_name + "!")	
+		objective.die()
+	else:
+		if (is_upgraded):
+			activate_extra = true
+	
+	if (activate_extra):
+		await extra.call()
+
 func defend():
 	active_character.is_defending = true
 	command_menu.hide()
@@ -529,13 +562,13 @@ func defend():
 
 func _battleWon():
 	gamestate = GameStates.WON
-	music_player.set_stream(background_music[1])
-	music_player.play(0)
+	audio_manager.music_player.set_stream(background_music[1])
+	audio_manager.music_player.play(0)
 	
-	if (noelia.is_alive):
-		noelia.update_character()
-	if (ash.is_alive):
-		ash.update_character()
+	if (party_member_1.is_alive):
+		party_member_1.update_character()
+	if (party_member_2.is_alive):
+		party_member_2.update_character()
 	await show_message("You've won!")
 	await add_message("Refresh the page to play again.")
 	exploration_system.show()
@@ -544,12 +577,28 @@ func _battleWon():
 
 func _battleLost():
 	gamestate = GameStates.LOST
-	music_player.set_stream(background_music[3])
-	music_player.play(0)
+	audio_manager.music_player.set_stream(background_music[3])
+	audio_manager.music_player.play(0)
 	
 	await show_message("Noelia and Ash have fallen..")
 	await add_message("You've lost")
 	await add_message("Refresh the page to start over.")
+
+
+
+func update_ui(): #re ver donde ubicar realmente esta funcion
+	party_member_1_HpLabel.text = ("Health Points: " + str(party_member_1.currentHP) + "/" + str(party_member_1.maxHP))
+	party_member_1_SpLabel.text = ("Spirit Points: " + str(party_member_1.currentSP) + "/" + str(party_member_1.maxSP))
+	
+	party_member_2_HpLabel.text = ("Health Points: " + str(party_member_2.currentHP) + "/" + str(party_member_2.maxHP))
+	party_member_2_SpLabel.text = ("Spirit Points: " + str(party_member_2.currentSP) + "/" + str(party_member_2.maxSP))
+
+func _on_music_player_finished() -> void:
+	if (audio_manager.music_player.stream == load("res://musica (tambien reordenar)/Victory (intro).ogg")):
+		audio_manager.music_player.set_stream(load("res://musica (tambien reordenar)/Victory (loop).ogg"))
+		audio_manager.music_player.play(0)
+
+
 
 func show_message(message: String):
 	battle_info.text = message
@@ -558,62 +607,6 @@ func show_message(message: String):
 func add_message(message: String):
 	battle_info.text += ("\n" + message)
 	await accept
-
-func update_ui(): #re ver donde ubicar realmente esta funcion
-	noeliaHpLabel.text = ("Health Points: " + str(noelia.currentHP) + "/" + str(noelia.maxHP))
-	noeliaSpLabel.text = ("Spirit Points: " + str(noelia.currentSP) + "/" + str(noelia.maxSP))
-	
-	ashHpLabel.text = ("Health Points: " + str(ash.currentHP) + "/" + str(ash.maxHP))
-	ashSpLabel.text = ("Spirit Points: " + str(ash.currentSP) + "/" + str(ash.maxSP))
-
-func _on_music_player_finished() -> void:
-	if (music_player.stream == load("res://musica (tambien reordenar)/Victory (intro).ogg")):
-		music_player.set_stream(load("res://musica (tambien reordenar)/Victory (loop).ogg"))
-		music_player.play(0)
-
-func process_damage(objective: Battler, user_agility: int, user_agility_aux: int, objective_agility: int, objective_agility_aux: int, attack: int, defense: int, is_upgraded: bool, extra: Callable, element: int, is_inti: bool, sfx1: AudioStream): #unificar los cálculos de daño acá
-	var rng = RandomNumberGenerator.new()
-	var activate_extra: bool = false
-	#necesitamos animación/sfx para cuando arranca un ataque y para cuando este pega en el objetivo
-	if ((user_agility * user_agility_aux) > (objective_agility * objective_agility_aux)):
-		var damage: int
-		sfx_player.set_stream(sfx1)
-		sfx_player.play(0)
-		if (objective.side && objective.is_defending):
-			damage = int((round(attack * rng.randf_range(1.2, 1.25)) - (defense/2 * rng.randf_range(1.1, 1.2)))) * 5
-		else:
-			damage = int(round(attack * rng.randf_range(1.2, 1.25)) - (defense * rng.randf_range(1.1, 1.2))) * 5
-		damage = check_elemental_modifier(objective, damage, element)
-		#damage_counter = DamageCounter.new()
-		#damage_counter.damage = damage
-		#add_child(damage_counter)
-		#damage_counter.position = objective.position
-		await show_message(active_character.unit_name + " has done " + str(damage) + " points of damage to " + objective.unit_name + ".")
-		if (damage <= 0):
-			sfx_player.set_stream(load("res://sfx ( tambien re ordenar)/Shield 02.wav"))
-			sfx_player.play(0)
-			await show_message("The attack has been blocked.")
-		else:
-			objective.currentHP -= damage #agregar otro sonido para cuando ataca
-		#if (active_character.side and !is_inti):
-			#active_character.currentSP = add_spirit_points(active_character.currentSP, active_character.spiritCharge, active_character.maxSP, active_character.unit_name)
-		#else:
-			#if (objective.side && objective.currentHP >= 0):
-				#objective.currentSP = add_spirit_points(objective.currentSP, active_character.spiritCharge, objective.maxSP, objective.unit_name) #crear algo para decidir cuanto carga el spirit_points acá y no usar el defense charge
-		if (objective.currentHP <= 0):
-			if (objective.side):
-				await show_message(objective.unit_name + " has been knocked out...")
-			else:
-				await show_message(active_character.unit_name + " has slained " + objective.unit_name + "!")	
-			objective.die()
-		else:
-			if (is_upgraded):
-				activate_extra = true
-	else:
-		await show_message("The attack was dodged.")
-	
-	if (activate_extra):
-		await extra.call()
 
 func initialize(enemy: Unit): #inicializa enemigos, no el sistema de batalla
 	enemy.strong_against.clear()

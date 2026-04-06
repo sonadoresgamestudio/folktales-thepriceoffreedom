@@ -9,7 +9,7 @@ func _init():
 
 
 func base_effect(user: Battler, objective: Battler):
-	sfx = load(game_manager.load_file("spell_good_01_sfx"))
+	sfx = "spell_good_01_sfx"
 	if battle_system.active_character.side:
 		battle_system.gamestate = battle_system.GameStates.ACTION
 	else:
@@ -34,7 +34,7 @@ func base_effect(user: Battler, objective: Battler):
 
 
 func boosted_effect(user: Battler, objective: Battler):
-	sfx = load(game_manager.load_file("spell_good_01_sfx"))
+	sfx = "spell_good_01_sfx"
 	if battle_system.active_character.side:
 		battle_system.gamestate = battle_system.GameStates.ACTION
 	else:

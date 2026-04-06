@@ -12,6 +12,7 @@ func isTurn(battle_system: BattleSystem):
 	iceball.battle_system = battle_system
 	iceball.game_manager = battle_system.game_manager
 	
+	
 	if (battle_system.active_character.currentHP <= maxHP * 0.1):
 		var rng = RandomNumberGenerator.new()
 		if (rng.randf_range(0, 1) < 0.2):

@@ -23,10 +23,10 @@ func initialize():
 	gamestate = battle_system.gamestate
 	
 	name = "Cursor"
-	if(battle_system.noelia.is_alive):
-		hero_cursor_spawn.append(battle_system.noelia)
-	if(battle_system.ash.is_alive):
-		hero_cursor_spawn.append(battle_system.ash)
+	if(battle_system.party_member_1.is_alive):
+		hero_cursor_spawn.append(battle_system.party_member_1.get_node("Cursor Spawn"))
+	if(battle_system.party_member_2.is_alive):
+		hero_cursor_spawn.append(battle_system.party_member_2.get_node("Cursor Spawn"))
 	
 	for i in enemy_group_array.size():
 		enemy_cursor_spawn.append(enemy_group_array[i].get_node("Cursor Spawn"))

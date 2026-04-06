@@ -4,7 +4,7 @@ enum GameStates {MAINMENU, CUTSCENE, EXPLORATION, BATTLE, PARTYMENU} #main menu 
 enum Elements{FIRE, ICE, THUNDER, HOLY, PHYSICAL}
 @onready var gamestate: GameStates = GameStates.MAINMENU
 
-const file_directory_path: String = "res://file_directory.json" # REVISAR ESTA LÍNEA si hay problemas en encontrar el directorio
+const file_directory_path: String = "res://A JSON folder/file_directory.json" # REVISAR ESTA LÍNEA si hay problemas en encontrar el directorio
 
 #var main_menu: MainMenu
 #var cutscene_scene: PackedScene
@@ -50,7 +50,7 @@ func delete_scenes(do_not: PackedScene):
 	pass
 	
 
-func load_file_directory():
+static func load_file_directory():
 	var file_string = FileAccess.get_file_as_string(file_directory_path)
 	var file_directory
 	if file_string != null:
@@ -63,13 +63,13 @@ func load_file_directory():
 	
 	return file_directory
 
-func load_file(keyword: String):
+static func load_file(keyword: String):
 	var file_directory = load_file_directory()
 	var path: String = file_directory[keyword] #revisar posible error
 	
 	return path
 
-func load_json_data(keyword: String):
+static func load_json_data(keyword: String):
 	var file_directory = load_file_directory()
 	var path: String = file_directory[keyword]
 	

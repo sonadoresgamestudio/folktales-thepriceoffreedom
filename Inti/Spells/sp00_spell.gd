@@ -6,11 +6,12 @@ var cost: int
 var upgrade_cost: int
 var battle_system: BattleSystem
 var game_manager: GameManager
+var audio_manager: AudioManager
 var icon: Texture2D
 var element: GameManager.Elements
 var for_allies: bool #qué "side", party members o enemigos? true es party memeber, false es enemigo
 var effect: AnimatedSprite2D
-var sfx : AudioStream
+var sfx : String
 var range : int #rango al que le podés dar al objetivo
 
 func is_selected(target: Node2D):
