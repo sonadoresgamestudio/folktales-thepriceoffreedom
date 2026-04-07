@@ -2,7 +2,7 @@ class_name HolyStrike extends Spell
 
 func _init():
 	spell_name = "Holy Strike"
-	element = GameManager.Elements.HOLY
+	element = BattleSystem.Elements.HOLY
 	for_allies = false
 	cost = 3
 	upgrade_cost = 6
@@ -28,7 +28,7 @@ func base_effect(user: Battler, objective: Battler):
 	if(battle_system.active_character.side):
 		battle_system.active_character.currentSP -= cost
 	
-	await battle_system.process_damage(objective, attacker_agility, attacker_agility_aux, defender_agility, defender_agility_aux, attack, defense, false, Callable(), 1, true, sfx)
+	await battle_system.process_damage(objective, attacker_agility, attacker_agility_aux, defender_agility, defender_agility_aux, attack, defense, false, Callable(), element, true, sfx)
 	
 	battle_system.turn_manager()
 
@@ -52,7 +52,7 @@ func boosted_effect(user: Battler, objective: Battler):
 	
 	if(battle_system.active_character.side):
 		battle_system.active_character.currentSP -= upgrade_cost
-	
-	await battle_system.process_damage(objective, attacker_agility, attacker_agility_aux, defender_agility, defender_agility_aux, attack, defense, true, Callable(battle_system.status_effect_manager, "is_burnt").bind(objective), 1, true, sfx)
+	#modificar porque llama al IS BURNT
+	await battle_system.process_damage(objective, attacker_agility, attacker_agility_aux, defender_agility, defender_agility_aux, attack, defense, true, Callable(battle_system.status_effect_manager, "is_burnt").bind(objective), element, true, sfx)
 	
 	battle_system.turn_manager()

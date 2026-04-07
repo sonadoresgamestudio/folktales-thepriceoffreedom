@@ -18,8 +18,8 @@ var spiritCharge: int
 var maxSP: int
 
 var side: bool
-var strong_against: Array[GameManager.Elements] = []#crear listado de elementos, o debería hacer un listado de BOOLS
-var weak_against: Array[GameManager.Elements] = []#crear listado de elementos, o debería hacer un listado de BOOLS
+var strong_against: Array[BattleSystem.Elements] = []#crear listado de elementos, o debería hacer un listado de BOOLS
+var weak_against: Array[BattleSystem.Elements] = []#crear listado de elementos, o debería hacer un listado de BOOLS
 var texture: Texture2D
 var move_animation_speed: int 
 

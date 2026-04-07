@@ -1,8 +1,6 @@
 class_name FireSlime extends Unit
 
-var base_enemy_skill = BaseEnemySkill.new()
-var enemy_skills: Array[BaseEnemySkill]
-var has_inti_to_give: bool = true
+var enemys_target_selector = EnemysTargetSelector.new() 
 
 func _init():
 	id = 2
@@ -17,6 +15,6 @@ func isTurn(battle_system: BattleSystem):
 		if (rng.randf_range(0, 1) < 0.2):
 			battle_system.defend()
 		else:
-			await fireball.base_effect(battle_system.active_character, base_enemy_skill.choose_target(battle_system))
+			await fireball.base_effect(battle_system.active_character, enemys_target_selector.choose_target(battle_system))
 	else:
-		await fireball.base_effect(battle_system.active_character, base_enemy_skill.choose_target(battle_system))
+		await fireball.base_effect(battle_system.active_character, enemys_target_selector.choose_target(battle_system))

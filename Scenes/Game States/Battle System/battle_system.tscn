@@ -9,6 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://c2ta8k1d8lwsp" path="res://musica (tambien reordenar)/Game Over.ogg" id="5_16pf6"]
 [ext_resource type="Script" uid="uid://dlg1w6psksxir" path="res://Enemy Folder/enemy_group.gd" id="5_g5mrd"]
 [ext_resource type="Script" uid="uid://bajhbcmeiqug4" path="res://Enemy Folder/enemy.gd" id="6_pcsno"]
+[ext_resource type="PackedScene" uid="uid://bgbn0438tqru0" path="res://Scenes/Menus/Command Menu/command_menu.tscn" id="6_xahca"]
+[ext_resource type="PackedScene" uid="uid://b2yjmyaum1roe" path="res://Scenes/Menus/Abilities Menu/abilities_menu.tscn" id="7_gsnod"]
+[ext_resource type="PackedScene" uid="uid://cu550i2d3h62h" path="res://Scenes/Cursors/Battle Cursor/battle_cursor.tscn" id="8_gsnod"]
 [ext_resource type="Texture2D" uid="uid://51qjbtqfm0du" path="res://assets visuales (reordenar y crear directorio de assets)/Backgrounds, batalla (assets)/DungeonCombat.png" id="10_1qgew"]
 [ext_resource type="Script" uid="uid://ddj1pmssbgmfh" path="res://Scenes/Audio Manager/audio_manager.gd" id="10_lvxkt"]
 [ext_resource type="Texture2D" uid="uid://bb4jhjaugprkg" path="res://assets visuales (reordenar y crear directorio de assets)/Noelia.png" id="13_1qgew"]
@@ -36,49 +39,52 @@
 script = ExtResource("1_adrcq")
 audio_manager = NodePath("Audio Manager")
 background_music = Array[AudioStream]([ExtResource("2_b42py"), ExtResource("3_2p83y"), ExtResource("4_ged2m"), ExtResource("5_16pf6")])
-party_member_1 = NodePath("Hero Group/Party Member 1")
+party_member_1 = NodePath("Hero Group/Hero 1")
 party_member_1_HpLabel = NodePath("UI/Noelia/NoeliaHPLabel")
 party_member_1_SpLabel = NodePath("UI/Noelia/NoeliaHPLabel/NoeliaSPLabel")
-party_member_2 = NodePath("Hero Group/Party Member 2")
+party_member_2 = NodePath("Hero Group/Hero 2")
 party_member_2_HpLabel = NodePath("UI/Ash/AshHPLabel")
 party_member_2_SpLabel = NodePath("UI/Ash/AshHPLabel/AshSPLabel")
 enemy_group = NodePath("Enemy Group")
 battle_info = NodePath("UI/Battle Info")
+command_menu_pack = ExtResource("6_xahca")
+abilities_menu_pack = ExtResource("7_gsnod")
+cursor_pack = ExtResource("8_gsnod")
 turn_order_panel = NodePath("UI/Turn Order Panel")
 
 [node name="Hero Group" type="Node" parent="." unique_id=753641638]
 
-[node name="Party Member 1" type="CharacterBody2D" parent="Hero Group" unique_id=487875242 node_paths=PackedStringArray("battle_system")]
+[node name="Hero 1" type="CharacterBody2D" parent="Hero Group" unique_id=487875242 node_paths=PackedStringArray("battle_system")]
 position = Vector2(174, 803)
 script = ExtResource("2_ftxge")
 battle_system = NodePath("../..")
 
-[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Party Member 1" unique_id=352849985]
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Hero 1" unique_id=352849985]
 position = Vector2(-87, -30)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Party Member 1" unique_id=1377557173]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Hero 1" unique_id=1377557173]
 shape = SubResource("CircleShape2D_bw0wc")
 debug_color = Color(0.338507, 0.495863, 0.973454, 0.42)
 
-[node name="Status" parent="Hero Group/Party Member 1" unique_id=2030172036 instance=ExtResource("4_6u8ak")]
+[node name="Status" parent="Hero Group/Hero 1" unique_id=2030172036 instance=ExtResource("4_6u8ak")]
 offset_left = -45.0
 offset_top = -183.0
 offset_right = -5.0
 offset_bottom = -143.0
 
-[node name="Party Member 2" type="CharacterBody2D" parent="Hero Group" unique_id=620524181 node_paths=PackedStringArray("battle_system")]
+[node name="Hero 2" type="CharacterBody2D" parent="Hero Group" unique_id=620524181 node_paths=PackedStringArray("battle_system")]
 position = Vector2(639, 766)
 script = ExtResource("2_ftxge")
 battle_system = NodePath("../..")
 id = 1
 
-[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Party Member 2" unique_id=599143169]
+[node name="Cursor Spawn" type="Node2D" parent="Hero Group/Hero 2" unique_id=599143169]
 position = Vector2(-117, -2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Party Member 2" unique_id=762462823]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero Group/Hero 2" unique_id=762462823]
 shape = SubResource("CircleShape2D_jb082")
 
-[node name="Status" parent="Hero Group/Party Member 2" unique_id=940437878 instance=ExtResource("4_6u8ak")]
+[node name="Status" parent="Hero Group/Hero 2" unique_id=940437878 instance=ExtResource("4_6u8ak")]
 offset_left = -6.0
 offset_top = -174.0
 offset_right = -6.0
@@ -92,7 +98,6 @@ position = Vector2(1119, 388)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("6_pcsno")
 battle_system = NodePath("../..")
-id = 2
 
 [node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 1" unique_id=1777826066]
 position = Vector2(-140, 3)
@@ -113,7 +118,6 @@ position = Vector2(1365, 374)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("6_pcsno")
 battle_system = NodePath("../..")
-id = 3
 
 [node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 2" unique_id=278090100]
 position = Vector2(-122, 3)
@@ -134,7 +138,6 @@ position = Vector2(1646, 360)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("6_pcsno")
 battle_system = NodePath("../..")
-id = 4
 
 [node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 3" unique_id=2053256341]
 position = Vector2(-134, 0)
@@ -154,7 +157,6 @@ offset_bottom = 151.0
 position = Vector2(1056, 155)
 script = ExtResource("6_pcsno")
 battle_system = NodePath("../..")
-id = 5
 
 [node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 4" unique_id=1748486298]
 position = Vector2(-140, 0)
@@ -174,7 +176,6 @@ offset_bottom = 235.0
 position = Vector2(1326, 146)
 script = ExtResource("6_pcsno")
 battle_system = NodePath("../..")
-id = 6
 
 [node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 5" unique_id=179535421]
 position = Vector2(-128, 0)
@@ -194,7 +195,6 @@ offset_bottom = 220.0
 position = Vector2(1638, 153)
 script = ExtResource("6_pcsno")
 battle_system = NodePath("../..")
-id = 7
 
 [node name="Cursor Spawn" type="Node2D" parent="Enemy Group/Enemy 6" unique_id=402005739]
 position = Vector2(-152, 3)

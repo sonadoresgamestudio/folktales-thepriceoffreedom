@@ -1,4 +1,4 @@
-class_name BaseEnemySkill extends Resource
+class_name EnemysTargetSelector extends Resource
 
 func choose_target(battle_system: BattleSystem) -> Node2D:
 	var noelia

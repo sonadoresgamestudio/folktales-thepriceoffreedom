@@ -8,7 +8,7 @@ var battle_system: BattleSystem
 var game_manager: GameManager
 var audio_manager: AudioManager
 var icon: Texture2D
-var element: GameManager.Elements
+var element: BattleSystem.Elements
 var for_allies: bool #qué "side", party members o enemigos? true es party memeber, false es enemigo
 var effect: AnimatedSprite2D
 var sfx : String

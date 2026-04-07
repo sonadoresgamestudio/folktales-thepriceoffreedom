@@ -22,8 +22,8 @@ var is_alive = true
 var counter_to_turns: int
 
 var unit: Unit
-var strong_against: Array[GameManager.Elements]
-var weak_against: Array[GameManager.Elements]
+var strong_against: Array[BattleSystem.Elements]
+var weak_against: Array[BattleSystem.Elements]
 var turns_for_altered_stats: Array[int] #dado un valor cualquier n, este representa la cantidad de turnos restantes para sufrir un ailment, es decir, si vale "3", en los próximos 3 turnos sufrirá dicho ailment y el número irá descendiendo hasta que llegue a 0 y pueda ser considerado "curado"
 var altered_stats: Array[bool]
 var altered_stats_icons: Array[TextureRect]
@@ -36,3 +36,5 @@ var is_turn: bool
 
 @onready var sprite: Sprite2D = $Sprite2D
 @export var id: int
+
+var animation_library: AnimationLibrary

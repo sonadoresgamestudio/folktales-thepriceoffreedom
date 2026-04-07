@@ -35,20 +35,25 @@ var e_size: int
 var added_xp: int #placeholder para el xp que conseguís de los bichos derrotados
 
 @export var battle_info: Label
-
+enum Elements{FIRE, ICE, THUNDER, HOLY, PHYSICAL}
 #var _level: int
 
 enum GameStates { START, PLAYER_TURN, SORTING, CHOOSE_TARGET, CHOOSE_ABILITY, MOVEMENT, ACTION, ENEMY, WON, LOST, MESSAGE_SHOWN } #0 battle start/enemy turn (no control), 1 player turn, 2 choose target, 3 executed action
 var gamestate: GameStates = GameStates.START
 
-var command_menu: CommandMenu#cambiá todas las referencias y métodos de button a control (nodo más genérico)
+@export var command_menu_pack: PackedScene
+var command_menu: CommandMenu #cambiá todas las referencias y métodos de button a control (nodo más genérico)
+@export var abilities_menu_pack: PackedScene
 var abilities_menu: AbilitiesMenu
-var status_effect_manager: StatusEffectManager
+@export var cursor_pack: PackedScene
+var cursor: BattleCursor
 
+var status_effect_manager: StatusEffectManager #clase
+var damage_calculator: DamageCalculator #clase
 var turn_order_array: Array 
 
 var for_allies: bool
-var cursor: BattleCursor #la manito/flechita que indica sobre qué opción está el jugador
+ #la manito/flechita que indica sobre qué opción está el jugador
 var target_position: Vector2
 var damage_counter: DamageCounter
 @export var turn_order_panel: TurnOrderPanel
@@ -96,7 +101,7 @@ func _ready():
 	#region inicializando enemigos
 	var rng = RandomNumberGenerator.new()
 	var array_list = ArrayList.new() #la clase con los array de enemigos posibles
-	array_list.initialize(self, 2)#array_list.initialize(self, rng.randi_range(0,4)) #se inicializa el cargar el array enemigo, cambiar el mínimo a 0 post expo
+	array_list.initialize(self, rng.randi_range(0,4)) #se inicializa el cargar el array enemigo, cambiar el mínimo a 0 post expo
 	e_size = enemy_array.size()
 	
 	for i in e_size:
@@ -117,20 +122,16 @@ func _ready():
 	#endregion
 	
 	#region iniciando menues
-	var file_path = game_manager.load_file("command_menu_scene")
-	command_menu = load(file_path).instantiate()
+	command_menu = command_menu_pack.instantiate()
 	command_menu.hide()
 	add_child(command_menu)
 	
-	file_path = game_manager.load_file("battle_cursor_scene")
-	cursor = load(file_path).instantiate()
+	cursor = cursor_pack.instantiate()
 	cursor.hide()
 	add_child(cursor)
 	cursor.initialize()
 	
-	file_path = game_manager.load_file("abilities_menu_scene")
-	abilities_menu = load(file_path).instantiate()
-	
+	abilities_menu = abilities_menu_pack.instantiate()
 	abilities_menu.hide()
 	add_child(abilities_menu)
 	#endregion
@@ -406,7 +407,7 @@ func active_turn():
 
 #endregion
 
-func movement(): #como implementar en el resto de las acciones como codigo generico
+func movement(): #esto tiene que ir de manera genérica EN OTRA CLASE para manejar ANIMACIONES
 	var tween = create_tween() 
 	var distance = target_position.x - active_character.position.x
 	var duration = abs(distance) / active_character.move_animation_speed
@@ -480,7 +481,7 @@ func physical_attack(defender: Battler):
 	var defender_agility: int = defender.agility
 	var rng = RandomNumberGenerator.new()
 	var _active_character_agility_aux = rng.randf_range(_active_character_agility * 0.90, _active_character_agility * 1.20)
-	var defender_agility_aux = rng.randf_range(defender_agility * 0.85, defender_agility)#this is the result of the attack, no need to make a statement for a one-use variable
+	var defender_agility_aux = rng.randf_range(defender_agility * 0.60, defender_agility)#this is the result of the attack, no need to make a statement for a one-use variable
 	var sfx: String
 	
 	if (gamestate == GameStates.ACTION):
@@ -491,22 +492,26 @@ func physical_attack(defender: Battler):
 	
 	await show_message(active_character.unit_name + " has attacked " + defender.unit_name)
 	
-	await process_damage(defender, _active_character_agility, _active_character_agility_aux, defender_agility, defender_agility_aux, attack, defense, false, Callable(), GameManager.Elements.PHYSICAL, false, sfx)
+	await process_damage(defender, _active_character_agility, _active_character_agility_aux, defender_agility, defender_agility_aux, attack, defense, false, Callable(), Elements.PHYSICAL, false, sfx)
 	
 	turn_manager()
 
-func check_elemental_modifier(objective: Battler, damage: int, element: GameManager.Elements) -> int:
-	
+func check_elemental_modifier(objective: Battler, damage: int, element: Elements) -> int:
+	print("entro al chequeo")
 	for i in objective.strong_against.size():
+		print("bucle strong")
 		if(objective.strong_against[i] == element):
+			print("entro al strong")
 			return damage * 0.75
 	
 	for i in objective.weak_against.size():
+		print("bucle weak")
 		if(objective.weak_against[i] == element):
+			print("entro al weak")
 			return damage * 1.5
 	return damage
 
-func process_damage(objective: Battler, user_agility: int, user_agility_aux: int, objective_agility: int, objective_agility_aux: int, attack: int, defense: int, is_upgraded: bool, extra: Callable, element: GameManager.Elements, is_spell: bool, sfx: String): #unificar los cálculos de daño acá
+func process_damage(objective: Battler, user_agility: int, user_agility_aux: int, objective_agility: int, objective_agility_aux: int, attack: int, defense: int, is_upgraded: bool, extra: Callable, element: Elements, is_spell: bool, sfx: String): #unificar los cálculos de daño acá
 	var rng = RandomNumberGenerator.new()
 	var activate_extra: bool = false
 	#necesitamos animación/sfx para cuando arranca un ataque y para cuando este pega en el objetivo
@@ -525,10 +530,10 @@ func process_damage(objective: Battler, user_agility: int, user_agility_aux: int
 		damage = int(round(attack * rng.randf_range(1.2, 1.25)) - (defense * rng.randf_range(1.1, 1.2))) * 5
 	damage = check_elemental_modifier(objective, damage, element)
 	
-	damage_counter = load("res://damage_counter.tscn").instantiate()
-	damage_counter.damage = damage
-	add_child(damage_counter)
-	damage_counter.position = objective.position
+	#damage_counter = load("res://damage_counter.tscn").instantiate()
+	#damage_counter.damage = damage
+	#add_child(damage_counter)
+	#damage_counter.position = objective.position
 	
 	await show_message(active_character.unit_name + " has done " + str(damage) + " points of damage to " + objective.unit_name + ".")
 	if (damage <= 0):
@@ -628,10 +633,11 @@ func initialize(enemy: Unit): #inicializa enemigos, no el sistema de batalla
 	enemy.side = false
 	var aux_array = template["strong"]
 	for i in aux_array.size():
-		enemy.strong_against.append(aux_array[i])
+		enemy.strong_against.append(BattleSystem.Elements[aux_array[i]])
+		print("Agregado " + aux_array[i])
 	aux_array.clear()
 	aux_array = template["weak"]
 	for i in aux_array.size():
-		enemy.weak_against.append(aux_array[i])
+		enemy.weak_against.append(BattleSystem.Elements[aux_array[i]])
 	var aux_texture: String = template["texture"]
 	enemy.texture = load(game_manager.load_file(aux_texture))

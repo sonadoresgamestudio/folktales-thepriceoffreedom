@@ -1,7 +1,7 @@
 class_name GameManager extends Node
 
 enum GameStates {MAINMENU, CUTSCENE, EXPLORATION, BATTLE, PARTYMENU} #main menu donde empezás el juego, party menu donde curás a tus personajes y les equipás giladas
-enum Elements{FIRE, ICE, THUNDER, HOLY, PHYSICAL}
+
 @onready var gamestate: GameStates = GameStates.MAINMENU
 
 const file_directory_path: String = "res://A JSON folder/file_directory.json" # REVISAR ESTA LÍNEA si hay problemas en encontrar el directorio

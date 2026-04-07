@@ -2,7 +2,7 @@ class_name Heal extends Spell
 
 func _init():
 	spell_name = "Heal"
-	element = GameManager.Elements.HOLY
+	element = BattleSystem.Elements.HOLY
 	for_allies = true
 	cost = 2
 	upgrade_cost = 6
@@ -12,8 +12,7 @@ func base_effect(user: Battler, objective: Battler):
 	var heal_power = user.magical_strength * 0.4 #formula placeholder
 	
 	await battle_system.show_message(user.unit_name + " is healing " + objective.unit_name + "!")
-	battle_system.sfx_player.set_stream(sfx)
-	battle_system.sfx_player.play()
+	battle_system.audio_manager.load_sfx(sfx)
 	battle_system.active_character.currentSP -= cost
 	
 	objective.currentHP += roundi(heal_power)
@@ -29,8 +28,7 @@ func base_effect(user: Battler, objective: Battler):
 func boosted_effect(user: Node2D, objective: Node2D):
 	sfx = "spell_good_02_sfx"
 	await battle_system.show_message(user.unit_name + " is fully healing " + objective.unit_name + "!")
-	battle_system.sfx_player.set_stream(sfx)
-	battle_system.sfx_player.play(0)
+	battle_system.audio_manager.load_sfx(sfx)
 	battle_system.active_character.currentSP -= upgrade_cost
 	
 	objective.current_hp = objective.max_hp

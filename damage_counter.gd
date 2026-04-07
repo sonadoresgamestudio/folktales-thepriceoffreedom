@@ -11,4 +11,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	tween.tween_property(self, "position", position + Vector2(0, - 400), 4)
-	await get_tree().create_timer(4).timeout
+	#await get_tree().create_timer(4).timeout

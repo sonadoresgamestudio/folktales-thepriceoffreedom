@@ -12,10 +12,10 @@
 	  "luck": 5,
 	  "texture": "skeleton_knight_idle_sprite",
 	  "strong": [
-		0,
+		"FIRE",
 	  ],
 	  "weak": [
-		5,
+		"HOLY",
 	  ]
 	},
 	"2": {
@@ -31,10 +31,10 @@
 	  "luck": 5,
 	  "texture": "fire_slime_idle_sprite",
 	  "strong": [
-		0,
+		"FIRE",
 	  ],
 	  "weak": [
-		1,
+		"PHYSICAL",
 	  ]
 	},
 	"3": {
@@ -50,10 +50,10 @@
 	  "luck": 5,
 	  "texture": "ice_slime_idle_sprite",
 	  "strong": [
-		1,
+		"ICE",
 	  ],
 	  "weak": [
-		0,
+		"PHYSICAL",
 	  ]
 	},
 	"4": {
@@ -69,10 +69,10 @@
 	  "luck": 5,
 	  "texture": "thunder_slime_idle_sprite",
 	  "strong": [
-		2,
+		"THUNDER",
 	  ],
 	  "weak": [
-		5,
+		"PHYSICAL",
 	  ]
 	}
 }
